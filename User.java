@@ -1,6 +1,8 @@
 package experiments;
 
 public class User {
+	
+	// Properties
 	private String name;
 	private String address;
 	private String phoneNumber;
