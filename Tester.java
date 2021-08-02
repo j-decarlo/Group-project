@@ -1,6 +1,5 @@
 package experiments;
 
-import javax.swing.*;
 import java.util.regex.*;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;

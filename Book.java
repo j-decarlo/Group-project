@@ -5,10 +5,11 @@ public class Book extends Item {
 	// Properties
 	private int checkoutLength;	// 21 days standard, or 14 days if best seller
 	private Boolean isBestSeller;
+	private double itemValue;
 	
 	
 	// Constructor
-	public Book(String _title, Boolean _canCheckout, Boolean _isCheckedOut, Boolean _isBestSeller) {
+	public Book(String _title, Boolean _canCheckout, Boolean _isCheckedOut, Boolean _isBestSeller, double _itemValue) {
 		this.setTitle(_title);
 		this.setCanCheckout(_canCheckout);
 		this.setIsCheckedOut(_isCheckedOut);
@@ -23,6 +24,10 @@ public class Book extends Item {
 
 	public Boolean isBestSeller() {
 		return isBestSeller;
+	}
+
+	public double getItemValue() {
+		return itemValue;
 	}
 
 	
@@ -44,10 +49,18 @@ public class Book extends Item {
 			this.checkoutLength = 21;
 		}
 	}
+
+	public void setItemValue(double _itemValue) {
+		this.itemValue = _itemValue;
+	}
 	
 	
 	// Functions
 	public void printCheckoutLength() {
 		System.out.println(checkoutLength);
+	}
+
+	public void printItemValue() {
+		System.out.println("$" + String.format("%.2f", itemValue));
 	}
 }
