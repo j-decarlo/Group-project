@@ -7,6 +7,7 @@ public class User {
 	private String address;
 	private String phoneNumber;
 	private String libraryNumber;
+	private int age;
 
 	
 	// Getters
@@ -24,6 +25,10 @@ public class User {
 	
 	public String getLibraryNumber() {
 		return libraryNumber;
+	}
+	
+	public int getAge() {
+		return age;
 	}
 
 	
@@ -43,6 +48,10 @@ public class User {
 	public void setLibraryNumber(String _libraryNumber) {
 		this.libraryNumber = _libraryNumber;
 	}
+
+	public void setAge(int _age) {
+		this.age = _age;
+	}
 	
 	
 	// Functions
@@ -60,5 +69,9 @@ public class User {
 
 	public void printLibraryNumber() {
 		System.out.println(libraryNumber);
+	}
+
+	public void printAge() {
+		System.out.println(age);
 	}
 }
