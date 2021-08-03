@@ -9,11 +9,11 @@ public class Book extends Item {
 	
 	
 	// Constructor //////////////////////////////////////////////////
-	public Book(String _title, Boolean _canCheckout, Boolean _isCheckedOut, Boolean _isBestSeller, double _itemValue) {
+	public Book(String _title, Boolean _isBestSeller, double _itemValue) {
 		this.setTitle(_title);
-		this.setCanCheckout(_canCheckout);
-		this.setIsCheckedOut(_isCheckedOut);
-		this.setIsBestSeller(_isBestSeller);
+		this.setCanCheckout(true);
+		this.setIsCheckedOut(false);
+		this.setIsBestSeller(_isBestSeller);	// Sets checkoutLength
 	}
 
 	

@@ -8,10 +8,10 @@ public class AudioVideo extends Item {
 	
 	
 	// Constructor //////////////////////////////////////////////////
-	public AudioVideo(String _title, Boolean _canCheckout, Boolean _isCheckedOut, double _itemValue) {
+	public AudioVideo(String _title, double _itemValue) {
 		this.setTitle(_title);
-		this.setCanCheckout(_canCheckout);
-		this.setIsCheckedOut(_isCheckedOut);
+		this.setCanCheckout(true);
+		this.setIsCheckedOut(false);
 		checkoutLength = 14;
 	}
 

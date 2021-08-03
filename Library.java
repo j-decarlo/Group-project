@@ -101,7 +101,7 @@ public class Library {
 	}
 
 	// Add item functions
-	public void addLibraryBook(Book book) {
+	public void addBook(Book book) {
 		libraryBooks.add(book);
 	}
 
@@ -121,11 +121,34 @@ public class Library {
 	
 	// Check out items
 	public void checkOutBook(Book book) {
+		if(bookRequests.contains(book))
+		{
+			bookRequests.remove(book);
+		}
+		
 		checkedOutBooks.add(book);
+		book.setCanCheckout(false);
 	}
 
 	public void checkOutAudioVideo(AudioVideo av) {
+		if(audioVideoRequests.contains(av))
+		{
+			audioVideoRequests.remove(av);
+		}
+		
 		checkedOutAudioVideo.add(av);
+		av.setCanCheckout(false);
+	}
+	
+	// Return items
+	public void returnBook(Book book) {
+		checkedOutBooks.remove(book);
+		book.setCanCheckout(true);
+	}
+
+	public void returnAudioVideo(AudioVideo av) {
+		checkedOutAudioVideo.remove(av);
+		av.setCanCheckout(true);
 	}
 
 	// Check if items are available
