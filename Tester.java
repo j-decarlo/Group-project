@@ -96,7 +96,7 @@ public class Tester {
         //checks to see if user would like to check a book out or not
         //we should implement the class here
         int dialogButton = 0;
-        int dialogResult = JOptionPane.showConfirmDialog (null, "Would you like to check out a book?","Book Checkout Area", dialogButton);
+        int dialogResult = JOptionPane.showConfirmDialog (null, "Would you like to check out a book?", "Book Checkout Area", dialogButton);
         if(dialogResult == JOptionPane.YES_OPTION) {
             System.out.println();
             // Saving code here

@@ -6,16 +6,18 @@ import java.util.List;
 public class Library {
 	
 	// Properties //////////////////////////////////////////////////
-	List<Book> libraryBooks;
-	List<AudioVideo> libraryAudioVideo;
-	List<ReferenceBook> libraryReferenceBooks;
-	List<Magazine> libraryMagazines;
+	private List<Book> libraryBooks;
+	private List<AudioVideo> libraryAudioVideo;
+	private List<ReferenceBook> libraryReferenceBooks;
+	private List<Magazine> libraryMagazines;
 	
-	List<Book> checkedOutBooks;
-	List<AudioVideo> checkedOutAudioVideo;
+	private List<Book> checkedOutBooks;
+	private List<AudioVideo> checkedOutAudioVideo;
 	
-	List<Book> bookRequests;
-	List<AudioVideo> audioVideoRequests;
+	private List<Book> bookRequests;
+	private List<AudioVideo> audioVideoRequests;
+
+	private List<UserCheckOut> usersCheckOut;
 	
 	
 	// Constructor //////////////////////////////////////////////////
@@ -30,6 +32,8 @@ public class Library {
 		
 		bookRequests = new ArrayList<Book>();
 		audioVideoRequests = new ArrayList<AudioVideo>();
+
+		usersCheckOut = new ArrayList<UserCheckOut>();
 	}
 
 	
@@ -120,7 +124,7 @@ public class Library {
 	// Library functions /////////////////////////
 	
 	// Check out items
-	public void checkOutBook(Book book) {
+	public void checkOutBook(Book book, User user) {
 		if(bookRequests.contains(book))
 		{
 			bookRequests.remove(book);
@@ -128,9 +132,32 @@ public class Library {
 		
 		checkedOutBooks.add(book);
 		book.setCanCheckout(false);
+		
+		Boolean userFound = false;
+		for(UserCheckOut uco : usersCheckOut)
+		{
+			if(user == uco.getUser())
+			{
+				userFound = true;
+				if(user.getAge() <= 12 && uco.getCheckedOutTotal() == 5)
+				{
+					// deny the child
+				}
+				else
+				{
+					uco.checkOutBook(book);
+				}
+			}
+		}
+		if(!userFound)
+		{
+			UserCheckOut newUserCheckOut = new UserCheckOut(user);
+			newUserCheckOut.checkOutBook(book);
+			usersCheckOut.add(newUserCheckOut);
+		}
 	}
 
-	public void checkOutAudioVideo(AudioVideo av) {
+	public void checkOutAudioVideo(AudioVideo av, User user) {
 		if(audioVideoRequests.contains(av))
 		{
 			audioVideoRequests.remove(av);
@@ -138,17 +165,74 @@ public class Library {
 		
 		checkedOutAudioVideo.add(av);
 		av.setCanCheckout(false);
+		
+		Boolean userFound = false;
+		for(UserCheckOut uco : usersCheckOut)
+		{
+			if(user == uco.getUser())
+			{
+				userFound = true;
+				if(user.getAge() <= 12 && uco.getCheckedOutTotal() == 5)
+				{
+					// deny the child
+				}
+				else
+				{
+					uco.checkOutAudioVideo(av);
+				}
+			}
+		}
+		if(!userFound)
+		{
+			UserCheckOut newUserCheckOut = new UserCheckOut(user);
+			newUserCheckOut.checkOutAudioVideo(av);
+			usersCheckOut.add(newUserCheckOut);
+		}
 	}
 	
 	// Return items
-	public void returnBook(Book book) {
-		checkedOutBooks.remove(book);
-		book.setCanCheckout(true);
+	public void returnBook(Book book, User user) {
+		if(checkedOutBooks.contains(book))
+		{
+			checkedOutBooks.remove(book);
+			book.setCanCheckout(true);
+		}
+		
+		Boolean userFound = false;
+		for(UserCheckOut uco : usersCheckOut)
+		{
+			if(user == uco.getUser())
+			{
+				userFound = true;
+				uco.returnBook(book);
+			}
+		}
+		if(!userFound)
+		{
+			// nothing to do
+		}
 	}
 
-	public void returnAudioVideo(AudioVideo av) {
-		checkedOutAudioVideo.remove(av);
-		av.setCanCheckout(true);
+	public void returnAudioVideo(AudioVideo av, User user) {
+		if(checkedOutAudioVideo.contains(av))
+		{
+			checkedOutAudioVideo.remove(av);
+			av.setCanCheckout(true);
+		}
+		
+		Boolean userFound = false;
+		for(UserCheckOut uco : usersCheckOut)
+		{
+			if(user == uco.getUser())
+			{
+				userFound = true;
+				uco.returnAudioVideo(av);
+			}
+		}
+		if(!userFound)
+		{
+			// nothing to do
+		}
 	}
 
 	// Check if items are available
@@ -161,11 +245,43 @@ public class Library {
 	}
 
 	// Request items
-	public void requestBook(Book book) {
+	public void requestBook(Book book, User user) {
 		bookRequests.add(book);	// what if duplicate?
+		
+		Boolean userFound = false;
+		for(UserCheckOut uco : usersCheckOut)
+		{
+			if(user == uco.getUser())
+			{
+				userFound = true;
+				uco.requestBook(book);
+			}
+		}
+		if(!userFound)
+		{
+			UserCheckOut newUserCheckOut = new UserCheckOut(user);
+			newUserCheckOut.requestBook(book);
+			usersCheckOut.add(newUserCheckOut);
+		}
 	}
 
-	public void requestAudioVideo(AudioVideo av) {
+	public void requestAudioVideo(AudioVideo av, User user) {
 		audioVideoRequests.add(av);	// what if duplicate?
+		
+		Boolean userFound = false;
+		for(UserCheckOut uco : usersCheckOut)
+		{
+			if(user == uco.getUser())
+			{
+				userFound = true;
+				uco.requestAudioVideo(av);
+			}
+		}
+		if(!userFound)
+		{
+			UserCheckOut newUserCheckOut = new UserCheckOut(user);
+			newUserCheckOut.requestAudioVideo(av);
+			usersCheckOut.add(newUserCheckOut);
+		}
 	}
 }
