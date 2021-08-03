@@ -2,12 +2,12 @@ package experiments;
 
 public class AudioVideo extends Item {
 	
-	// Properties
+	// Properties //////////////////////////////////////////////////
 	private int checkoutLength;	// 14 days
 	private double itemValue;
 	
 	
-	// Constructor
+	// Constructor //////////////////////////////////////////////////
 	public AudioVideo(String _title, Boolean _canCheckout, Boolean _isCheckedOut, double _itemValue) {
 		this.setTitle(_title);
 		this.setCanCheckout(_canCheckout);
@@ -16,7 +16,7 @@ public class AudioVideo extends Item {
 	}
 
 	
-	// Getters
+	// Getters //////////////////////////////////////////////////
 	public int getCheckoutLength() {
 		return checkoutLength;
 	}
@@ -26,13 +26,13 @@ public class AudioVideo extends Item {
 	}
 	
 	
-	// Setters
+	// Setters //////////////////////////////////////////////////
 	public void setItemValue(double _itemValue) {
 		this.itemValue = _itemValue;
 	}
 	
 	
-	// Functions
+	// Functions //////////////////////////////////////////////////
 	public void printCheckoutLength() {
 		System.out.println(checkoutLength);
 	}

@@ -2,7 +2,7 @@ package experiments;
 
 public class ReferenceBook extends Item {
 	
-	// Constructor
+	// Constructor //////////////////////////////////////////////////
 	public ReferenceBook(String _title) {
 		this.setTitle(_title);
 		this.setCanCheckout(false);

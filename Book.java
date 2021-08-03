@@ -2,13 +2,13 @@ package experiments;
 
 public class Book extends Item {
 	
-	// Properties
+	// Properties //////////////////////////////////////////////////
 	private int checkoutLength;	// 21 days standard, or 14 days if best seller
 	private Boolean isBestSeller;
 	private double itemValue;
 	
 	
-	// Constructor
+	// Constructor //////////////////////////////////////////////////
 	public Book(String _title, Boolean _canCheckout, Boolean _isCheckedOut, Boolean _isBestSeller, double _itemValue) {
 		this.setTitle(_title);
 		this.setCanCheckout(_canCheckout);
@@ -17,7 +17,7 @@ public class Book extends Item {
 	}
 
 	
-	// Getters
+	// Getters //////////////////////////////////////////////////
 	public int getCheckoutLength() {
 		return checkoutLength;
 	}
@@ -31,7 +31,7 @@ public class Book extends Item {
 	}
 
 	
-	// Setters
+	// Setters //////////////////////////////////////////////////
 	public void setCheckoutLength(int _checkoutLength) {
 		this.checkoutLength = _checkoutLength;
 	}
@@ -55,7 +55,7 @@ public class Book extends Item {
 	}
 	
 	
-	// Functions
+	// Functions //////////////////////////////////////////////////
 	public void printCheckoutLength() {
 		System.out.println(checkoutLength);
 	}

@@ -2,7 +2,7 @@ package experiments;
 
 public class User {
 	
-	// Properties
+	// Properties //////////////////////////////////////////////////
 	private String name;
 	private String address;
 	private String phoneNumber;
@@ -10,7 +10,7 @@ public class User {
 	private int age;
 
 	
-	// Getters
+	// Getters //////////////////////////////////////////////////
 	public String getName() {
 		return name;
 	}
@@ -32,7 +32,7 @@ public class User {
 	}
 
 	
-	// Setters
+	// Setters //////////////////////////////////////////////////
 	public void setName(String _name) {
 		this.name = _name;
 	}
@@ -54,7 +54,7 @@ public class User {
 	}
 	
 	
-	// Functions
+	// Functions //////////////////////////////////////////////////
 	public void printName() {
 		System.out.println(name);
 	}

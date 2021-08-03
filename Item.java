@@ -2,13 +2,13 @@ package experiments;
 
 public class Item {
 	
-	// Properties
+	// Properties //////////////////////////////////////////////////
 	private String title;
 	private Boolean canCheckout;
 	private Boolean isCheckedOut;
 
 	
-	// Getters
+	// Getters //////////////////////////////////////////////////
 	public String getTitle() {
 		return title;
 	}
@@ -22,7 +22,7 @@ public class Item {
 	}
 
 	
-	// Setters
+	// Setters //////////////////////////////////////////////////
 	public void setTitle(String _title) {
 		this.title = _title;
 	}
@@ -36,7 +36,7 @@ public class Item {
 	}
 	
 	
-	// Functions
+	// Functions //////////////////////////////////////////////////
 	public void printTitle() {
 		System.out.println(title);
 	}

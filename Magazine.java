@@ -2,7 +2,7 @@ package experiments;
 
 public class Magazine extends Item {
 	
-	// Constructor
+	// Constructor //////////////////////////////////////////////////
 	public Magazine(String _title) {
 		this.setTitle(_title);
 		this.setCanCheckout(false);
