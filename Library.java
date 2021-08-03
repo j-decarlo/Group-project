@@ -79,28 +79,28 @@ public class Library {
 	public void printBooks() {
 		for(Book book : libraryBooks)
 		{
-			System.out.println(book);
+			book.printTitle();
 		}
 	}
 
 	public void printAudioVideo() {
 		for(AudioVideo av : libraryAudioVideo)
 		{
-			System.out.println(av);
+			av.printTitle();
 		}
 	}
 
 	public void printReferenceBooks() {
 		for(ReferenceBook refBook : libraryReferenceBooks)
 		{
-			System.out.println(refBook);
+			refBook.printTitle();
 		}
 	}
 
 	public void printMagazines() {
 		for(Magazine magazine : libraryMagazines)
 		{
-			System.out.println(magazine);
+			magazine.printTitle();
 		}
 	}
 
