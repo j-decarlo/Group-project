@@ -1,6 +1,9 @@
-package experiments;
+package library_system;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class UserCheckOut {
@@ -8,8 +11,8 @@ public class UserCheckOut {
 	// Properties //////////////////////////////////////////////////
 	private User user;
 	
-	private List<Book> checkedOutBooks;
-	private List<AudioVideo> checkedOutAudioVideo;
+	private List<CheckedOutBook> checkedOutBooks;
+	private List<CheckedOutAV> checkedOutAudioVideo;
 	
 	private List<Book> bookRequests;
 	private List<AudioVideo> audioVideoRequests;
@@ -21,8 +24,8 @@ public class UserCheckOut {
 	public UserCheckOut(User _user) {
 		user = _user;
 		
-		checkedOutBooks = new ArrayList<Book>();
-		checkedOutAudioVideo = new ArrayList<AudioVideo>();
+		checkedOutBooks = new ArrayList<CheckedOutBook>();
+		checkedOutAudioVideo = new ArrayList<CheckedOutAV>();
 		
 		bookRequests = new ArrayList<Book>();
 		audioVideoRequests = new ArrayList<AudioVideo>();
@@ -34,6 +37,14 @@ public class UserCheckOut {
 	// Getters //////////////////////////////////////////////////
 	public User getUser() {
 		return user;
+	}
+	
+	public List<CheckedOutBook> getCheckedOutBooks() {
+		return checkedOutBooks;
+	}
+	
+	public List<CheckedOutAV> getCheckedOutAudioVideo() {
+		return checkedOutAudioVideo;
 	}
 	
 	public int getCheckedOutTotal() {
@@ -50,7 +61,9 @@ public class UserCheckOut {
 			bookRequests.remove(book);
 		}
 		
-		checkedOutBooks.add(book);
+		CheckedOutBook cBook = new CheckedOutBook(book);
+		
+		checkedOutBooks.add(cBook);
 		++checkedOutTotal;
 	}
 
@@ -60,25 +73,47 @@ public class UserCheckOut {
 			audioVideoRequests.remove(av);
 		}
 		
-		checkedOutAudioVideo.add(av);
+		CheckedOutAV cAV = new CheckedOutAV(av);
+		
+		checkedOutAudioVideo.add(cAV);
 		++checkedOutTotal;
 	}
 	
 	// Return items
 	public void returnBook(Book book) {
-		if(checkedOutBooks.contains(book))
+		//if(checkedOutBooks.contains(book))
+		//{
+		//	checkedOutBooks.remove(book);
+		//	book.setIsCheckedOut(false);
+		//}
+		
+		for(CheckedOutBook cBook : checkedOutBooks)
 		{
-			checkedOutBooks.remove(book);
-			book.setCanCheckout(true);
+			if(book == cBook.getBook())
+			{
+				checkedOutBooks.remove(cBook);
+				book.setIsCheckedOut(false);
+			}
 		}
+		
 		--checkedOutTotal;
 	}
 
 	public void returnAudioVideo(AudioVideo av) {
-		if(checkedOutAudioVideo.contains(av))
+		//if(checkedOutAudioVideo.contains(av))
+		//{
+		//	checkedOutAudioVideo.remove(av);
+		//}
+		
+		for(CheckedOutAV cAV : checkedOutAudioVideo)
 		{
-			checkedOutAudioVideo.remove(av);
+			if(av == cAV.getAudioVideo())
+			{
+				checkedOutAudioVideo.remove(cAV);
+				av.setIsCheckedOut(false);
+			}
 		}
+		
 		--checkedOutTotal;
 	}
 
@@ -89,5 +124,105 @@ public class UserCheckOut {
 
 	public void requestAudioVideo(AudioVideo av) {
 		audioVideoRequests.add(av);	// what if duplicate?
+	}
+}
+
+
+// Class for checked out book items
+class CheckedOutBook {
+	Book checkedOutBook;
+	Date checkedOutDate;
+	Date returnDate;
+	
+	CheckedOutBook(Book book) {
+		checkedOutBook = book;
+		checkedOutDate = new Date();
+		returnDate = setReturnDate(book.getCheckoutLength());
+	}
+	
+	Book getBook() {
+		return checkedOutBook;
+	}
+	
+	Date getCheckedOutDate() {
+		return checkedOutDate;
+	}
+	
+	String getCheckedOutDateString() {
+		SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+		String stringDate = df.format(checkedOutDate);
+		return stringDate;
+	}
+	
+	Date getReturnDate() {
+		return returnDate;
+	}
+	
+	String getReturnDateString() {
+		SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+		String stringDate = df.format(returnDate);
+		return stringDate;
+	}
+	
+	Date setReturnDate(int checkoutLength) {
+		Date returnDate = new Date();
+		
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		cal.add(Calendar.DATE, checkoutLength);
+		
+		returnDate = cal.getTime();
+		
+		return returnDate;
+	}
+}
+
+
+// Class for checked out audio/video items
+class CheckedOutAV {
+	AudioVideo checkedOutAV;
+	Date checkedOutDate;
+	Date returnDate;
+	
+	CheckedOutAV(AudioVideo av) {
+		checkedOutAV = av;
+		checkedOutDate = new Date();
+		returnDate = setReturnDate(av.getCheckoutLength());
+	}
+	
+	AudioVideo getAudioVideo() {
+		return checkedOutAV;
+	}
+	
+	Date getCheckedOutDate() {
+		return checkedOutDate;
+	}
+	
+	String getCheckedOutDateString() {
+		SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+		String stringDate = df.format(checkedOutDate);
+		return stringDate;
+	}
+	
+	Date getReturnDate() {
+		return returnDate;
+	}
+	
+	String getReturnDateString() {
+		SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+		String stringDate = df.format(returnDate);
+		return stringDate;
+	}
+	
+	Date setReturnDate(int checkoutLength) {
+		Date returnDate = new Date();
+		
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		cal.add(Calendar.DATE, checkoutLength);
+		
+		returnDate = cal.getTime();
+		
+		return returnDate;
 	}
 }

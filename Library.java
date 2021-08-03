@@ -1,4 +1,4 @@
-package experiments;
+package library_system;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -142,6 +142,7 @@ public class Library {
 				if(user.getAge() <= 12 && uco.getCheckedOutTotal() == 5)
 				{
 					// deny the child
+					// beginning logic will be messed up - FIX
 				}
 				else
 				{
@@ -175,6 +176,7 @@ public class Library {
 				if(user.getAge() <= 12 && uco.getCheckedOutTotal() == 5)
 				{
 					// deny the child
+					// beginning logic will be messed up - FIX
 				}
 				else
 				{

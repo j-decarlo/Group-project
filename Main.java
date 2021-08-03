@@ -1,15 +1,15 @@
-package experiments;
+package library_system;
 
 import java.util.regex.*;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-public class Tester {
+public class Main {
 
     public static void main(String[] a) {
 
         // Initialize the library
-	    Library library = new Tester().initializeLibrary();
+	    Library library = new Main().initializeLibrary();
 
         //asking for name
         JFrame frame = new JFrame();
