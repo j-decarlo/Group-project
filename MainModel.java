@@ -1,4 +1,4 @@
-package library_system;
+ppackage library_system;
 
 import java.util.List;
 
@@ -416,8 +416,8 @@ public class MainModel {
 			}
 			
 			library.returnBook(library.getBookFromID(id), library.getUserFromLibraryNumber(libraryNumber));
-			//library.returnBookUserCheckOut(library.getBookFromID(id), library.getUserFromLibraryNumber(libraryNumber));
-			response = "Returned book ID: " + id + " (" + library.getBookFromID(id).getTitle() + ") " + "by library number: " + libraryNumber + " (" + library.getUserFromLibraryNumber(libraryNumber).getName() + ")\nFines: " + library.printFineString(library.getUserFromLibraryNumber(libraryNumber));
+		//	library.returnBookUserCheckOut(library.getBookFromID(id), library.getUserFromLibraryNumber(libraryNumber));
+			response = "Returned book ID: " + id + " (" + library.getBookFromID(id).getTitle() + ") " + "by library number: " + libraryNumber + " (" + library.getUserFromLibraryNumber(libraryNumber).getName() + ")\nFines: $" + library.printFineString(library.getUserFromLibraryNumber(libraryNumber));
 		}
 		else if(id > 10 && id < 21)	// Audio/Video
 		{
@@ -443,8 +443,8 @@ public class MainModel {
 			}
 			
 			library.returnAudioVideo(library.getAVFromID(id), library.getUserFromLibraryNumber(libraryNumber));
-			//library.returnAudioVideoUserCheckOut(library.getAVFromID(id), library.getUserFromLibraryNumber(libraryNumber));
-			response = "Returned audio/video item ID: " + id + " (" + library.getAVFromID(id).getTitle() + ") " + "by library number: " + libraryNumber + " (" + library.getUserFromLibraryNumber(libraryNumber).getName() + ")\nFines: " + library.printFineString(library.getUserFromLibraryNumber(libraryNumber));
+		//	library.returnAudioVideoUserCheckOut(library.getAVFromID(id), library.getUserFromLibraryNumber(libraryNumber));
+			response = "Returned audio/video item ID: " + id + " (" + library.getAVFromID(id).getTitle() + ") " + "by library number: " + libraryNumber + " (" + library.getUserFromLibraryNumber(libraryNumber).getName() + ")\nFines: $" + library.printFineString(library.getUserFromLibraryNumber(libraryNumber));
 		}
 		else if(id > 20 && id < 26)	// Reference Book
 		{
@@ -470,3 +470,4 @@ public class MainModel {
 		return response;
 	}
 }
+
