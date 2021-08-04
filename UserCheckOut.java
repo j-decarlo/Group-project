@@ -113,12 +113,6 @@ public class UserCheckOut {
 	
 	// Return items
 	public void returnBook(Book book) {
-		//if(checkedOutBooks.contains(book))
-		//{
-		//	checkedOutBooks.remove(book);
-		//	book.setIsCheckedOut(false);
-		//}
-		
 		for(CheckedOutBook cBook : checkedOutBooks)
 		{
 			if(book == cBook.getBook())
@@ -132,11 +126,6 @@ public class UserCheckOut {
 	}
 
 	public void returnAudioVideo(AudioVideo av) {
-		//if(checkedOutAudioVideo.contains(av))
-		//{
-		//	checkedOutAudioVideo.remove(av);
-		//}
-		
 		for(CheckedOutAV cAV : checkedOutAudioVideo)
 		{
 			if(av == cAV.getAudioVideo())
@@ -165,17 +154,20 @@ class CheckedOutBook {
 	Book checkedOutBook;
 	Date checkedOutDate;
 	Date returnDate;
+	Boolean renewed;
 	
 	CheckedOutBook(Book book) {
 		checkedOutBook = book;
 		checkedOutDate = new Date();
 		returnDate = setReturnDate(book.getCheckoutLength());
+		renewed = false;
 	}
 	
 	CheckedOutBook(Book book, Date date) {
 		checkedOutBook = book;
 		checkedOutDate = date;
 		returnDate = setReturnDate(book.getCheckoutLength());
+		renewed = false;
 	}
 	
 	Book getBook() {
@@ -202,6 +194,10 @@ class CheckedOutBook {
 		return stringDate;
 	}
 	
+	Boolean getRenewed() {
+		return renewed;
+	}
+	
 	Date setReturnDate(int checkoutLength) {
 		Date returnDate = new Date();
 		
@@ -213,6 +209,10 @@ class CheckedOutBook {
 		
 		return returnDate;
 	}
+	
+	void setRenewed(Boolean _renewed) {
+		renewed = _renewed;
+	}
 }
 
 
@@ -221,17 +221,20 @@ class CheckedOutAV {
 	AudioVideo checkedOutAV;
 	Date checkedOutDate;
 	Date returnDate;
+	Boolean renewed;
 	
 	CheckedOutAV(AudioVideo av) {
 		checkedOutAV = av;
 		checkedOutDate = new Date();
 		returnDate = setReturnDate(av.getCheckoutLength());
+		renewed = false;
 	}
 	
 	CheckedOutAV(AudioVideo av, Date date) {
 		checkedOutAV = av;
 		checkedOutDate = date;
 		returnDate = setReturnDate(av.getCheckoutLength());
+		renewed = false;
 	}
 	
 	AudioVideo getAudioVideo() {
@@ -258,6 +261,10 @@ class CheckedOutAV {
 		return stringDate;
 	}
 	
+	Boolean getRenewed() {
+		return renewed;
+	}
+	
 	Date setReturnDate(int checkoutLength) {
 		Date returnDate = new Date();
 		
@@ -268,5 +275,9 @@ class CheckedOutAV {
 		returnDate = cal.getTime();
 		
 		return returnDate;
+	}
+	
+	void setRenewed(Boolean _renewed) {
+		renewed = _renewed;
 	}
 }

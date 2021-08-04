@@ -294,13 +294,35 @@ public class MainModel {
 		
 		if(id > 0 && id < 11)	// Book
 		{
-			// TODO
-			response = "Renewed book ID: " + id + " by library number: " + libraryNumber;
+			if(library.isBookRequested(library.getBookFromID(id)))
+			{
+				return response = "Book has been requested.\nYou must return this item.";
+			}
+			if(library.isBookRenewed(library.getBookFromID(id)))
+			{
+				return response = "Book has been renewed already.\nYou must return this item.";
+			}
+			else
+			{
+				response = "Renewed book ID: " + id + " (" + library.getBookFromID(id).getTitle() + ") " + "by library number: " + libraryNumber + " (" + library.getUserFromLibraryNumber(libraryNumber).getName() + ")";
+				library.setBookRenewed(library.getBookFromID(id));;
+			}
 		}
 		else if(id > 10 && id < 21)	// Audio/Video
 		{
-			// TODO
-			response = "Renewed audio/video item ID: " + id + " by library number: " + libraryNumber;
+			if(library.isAudioVideoRequested(library.getAVFromID(id)))
+			{
+				return response = "Audio/video item has been requested.\nYou must return this item.";
+			}
+			if(library.isAudioVideoRenewed(library.getAVFromID(id)))
+			{
+				return response = "Audio/video item has been renewed already.\nYou must return this item.";
+			}
+			else
+			{
+				response = "Renewed audio/video item ID: " + id + " (" + library.getAVFromID(id).getTitle() + ") " + "by library number: " + libraryNumber + " (" + library.getUserFromLibraryNumber(libraryNumber).getName() + ")";
+				library.setAVRenewed(library.getAVFromID(id));
+			}
 		}
 		else if(id > 20 && id < 26)	// Reference Book
 		{
@@ -331,12 +353,12 @@ public class MainModel {
 		if(id > 0 && id < 11)	// Book
 		{
 			// TODO
-			response = "Returned book ID: " + id + " by library number: " + libraryNumber;
+			response = "Returned book ID: " + id + " (" + library.getBookFromID(id).getTitle() + ") " + "by library number: " + libraryNumber + " (" + library.getUserFromLibraryNumber(libraryNumber).getName() + ")";
 		}
 		else if(id > 10 && id < 21)	// Audio/Video
 		{
 			// TODO
-			response = "Returned audio/video item ID: " + id + " by library number: " + libraryNumber;
+			response = "Returned audio/video item ID: " + id + " (" + library.getAVFromID(id).getTitle() + ") " + "by library number: " + libraryNumber + " (" + library.getUserFromLibraryNumber(libraryNumber).getName() + ")";
 		}
 		else if(id > 20 && id < 26)	// Reference Book
 		{

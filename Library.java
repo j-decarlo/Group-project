@@ -482,6 +482,79 @@ public class Library {
 		return !(checkedOutAudioVideo.contains(av));
 	}
 
+	// Check if items are requested
+	public Boolean isBookRequested(Book book) {
+		return (bookRequests.contains(book));
+	}
+
+	public Boolean isAudioVideoRequested(AudioVideo av) {
+		return (audioVideoRequests.contains(av));
+	}
+
+	// Check if items have been renewed
+	public Boolean isBookRenewed(Book book) {
+		for(UserCheckOut uco : usersCheckOut)
+		{
+			List<CheckedOutBook> checkedOutBooks = uco.getCheckedOutBooks();
+			for(CheckedOutBook cBook : checkedOutBooks)
+			{
+				if(cBook.getBook() == book)
+				{
+					return cBook.getRenewed();
+				}
+			}
+		}
+		return false;
+	}
+	
+	public Boolean isAVRenewed(AudioVideo av) {
+		for(UserCheckOut uco : usersCheckOut)
+		{
+			List<CheckedOutAV> checkedOutAudioVideo = uco.getCheckedOutAudioVideo();
+			for(CheckedOutAV cAV : checkedOutAudioVideo)
+			{
+				if(cAV.getAudioVideo() == av)
+				{
+					return cAV.getRenewed();
+				}
+			}
+		}
+		return false;
+	}
+
+	// Set if item has been renewed
+	public void setBookRenewed(Book book) {
+		for(UserCheckOut uco : usersCheckOut)
+		{
+			List<CheckedOutBook> checkedOutBooks = uco.getCheckedOutBooks();
+			for(CheckedOutBook cBook : checkedOutBooks)
+			{
+				if(cBook.getBook() == book)
+				{
+					cBook.setRenewed(true);
+				}
+			}
+		}
+	}
+	
+	public void setAVRenewed(AudioVideo av) {
+		for(UserCheckOut uco : usersCheckOut)
+		{
+			List<CheckedOutAV> checkedOutAudioVideo = uco.getCheckedOutAudioVideo();
+			for(CheckedOutAV cAV : checkedOutAudioVideo)
+			{
+				if(cAV.getAudioVideo() == av)
+				{
+					cAV.setRenewed(true);
+				}
+			}
+		}
+	}
+
+	public Boolean isAudioVideoRenewed(AudioVideo av) {
+		return !(audioVideoRequests.contains(av));
+	}
+
 	// Request items
 	public void requestBook(Book book, User user) {
 		bookRequests.add(book);	// what if duplicate?
