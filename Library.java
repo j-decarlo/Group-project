@@ -214,7 +214,7 @@ public class Library {
 	// Library functions /////////////////////////
 	
 	// Check out items
-	public void checkOutBook(Book book, User user) {
+	public boolean checkOutBook(Book book, User user) {
 		if(bookRequests.contains(book))
 		{
 			bookRequests.remove(book);
@@ -233,10 +233,13 @@ public class Library {
 				{
 					// deny the child
 					// beginning logic will be messed up - FIX
+					System.out.println("You have met the total limit of books you can check out.");
+					return false;
 				}
 				else
 				{
 					uco.checkOutBook(book);
+					return true;
 				}
 			}
 		}
@@ -245,10 +248,11 @@ public class Library {
 			UserCheckOut newUserCheckOut = new UserCheckOut(user);
 			newUserCheckOut.checkOutBook(book);
 			usersCheckOut.add(newUserCheckOut);
+			return true;
 		}
 	}
 	
-	public void checkOutBook(Book book, User user, Date date) {
+	public boolean checkOutBook(Book book, User user, Date date) {
 		if(bookRequests.contains(book))
 		{
 			bookRequests.remove(book);
@@ -267,10 +271,13 @@ public class Library {
 				{
 					// deny the child
 					// beginning logic will be messed up - FIX
+					System.out.println("You have met the total limit of books you can check out.");
+					return false;
 				}
 				else
 				{
 					uco.checkOutBook(book, date);
+					return true;
 				}
 			}
 		}
@@ -279,10 +286,11 @@ public class Library {
 			UserCheckOut newUserCheckOut = new UserCheckOut(user);
 			newUserCheckOut.checkOutBook(book, date);
 			usersCheckOut.add(newUserCheckOut);
+			return true;
 		}
 	}
 
-	public void checkOutAudioVideo(AudioVideo av, User user) {
+	public boolean checkOutAudioVideo(AudioVideo av, User user) {
 		if(audioVideoRequests.contains(av))
 		{
 			audioVideoRequests.remove(av);
@@ -301,10 +309,13 @@ public class Library {
 				{
 					// deny the child
 					// beginning logic will be messed up - FIX
+					System.out.println("You have met the total limit of audio videos you can check out.");
+					return false;
 				}
 				else
 				{
 					uco.checkOutAudioVideo(av);
+					return true
 				}
 			}
 		}
@@ -313,6 +324,7 @@ public class Library {
 			UserCheckOut newUserCheckOut = new UserCheckOut(user);
 			newUserCheckOut.checkOutAudioVideo(av);
 			usersCheckOut.add(newUserCheckOut);
+			return true;
 		}
 	}
 
@@ -335,10 +347,13 @@ public class Library {
 				{
 					// deny the child
 					// beginning logic will be messed up - FIX
+					System.out.println("You have met the total limit of audio videos you can check out.");
+					return false;
 				}
 				else
 				{
 					uco.checkOutAudioVideo(av, date);
+					return true
 				}
 			}
 		}
@@ -347,6 +362,7 @@ public class Library {
 			UserCheckOut newUserCheckOut = new UserCheckOut(user);
 			newUserCheckOut.checkOutAudioVideo(av, date);
 			usersCheckOut.add(newUserCheckOut);
+			return true;
 		}
 	}
 	
