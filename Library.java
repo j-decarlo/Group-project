@@ -1,8 +1,12 @@
 package library_system;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 
 public class Library {
 	
@@ -220,6 +224,47 @@ public class Library {
 		}
 	}
 
+	public String printFineString(User user) {
+		String fine = "$";
+		double fineDouble = 0.00;
+		
+		for(UserCheckOut uco : usersCheckOut)
+		{
+			// Get fines from books
+			for(CheckedOutBook cBook : uco.getCheckedOutBooks())
+			{
+				Calendar cal = Calendar.getInstance();
+				cal.add(Calendar.DATE, cBook.getBook().getCheckoutLength());
+				Date overdueDate = cal.getTime();
+				
+				if(overdueDate.before(new Date()))
+				{
+					LocalDate overdueLocalDate = LocalDate.parse(new SimpleDateFormat("MM-dd-yyyy").format(overdueDate));
+					LocalDate checkedOutLocalDate = LocalDate.parse(new SimpleDateFormat("MM-dd-yyyy").format(new Date()));
+					int daysOverdue = (int) ChronoUnit.DAYS.between(overdueLocalDate, checkedOutLocalDate);
+					fineDouble += daysOverdue * 0.10;
+				}
+			}
+			
+			// Get fines from audio/video items
+			for(CheckedOutAV cAV : uco.getCheckedOutAudioVideo())
+			{
+				Calendar cal = Calendar.getInstance();
+				cal.add(Calendar.DATE, cAV.getAudioVideo().getCheckoutLength());
+				Date overdueDate = cal.getTime();
+				
+				if(overdueDate.before(new Date()))
+				{
+					LocalDate overdueLocalDate = LocalDate.parse(new SimpleDateFormat("MM-dd-yyyy").format(overdueDate));
+					LocalDate checkedOutLocalDate = LocalDate.parse(new SimpleDateFormat("MM-dd-yyyy").format(new Date()));
+					int daysOverdue = (int) ChronoUnit.DAYS.between(overdueLocalDate, checkedOutLocalDate);
+					fineDouble += daysOverdue * 0.10;
+				}
+			}
+		}
+		return fine += String.format("%.2f", fineDouble);
+	}
+
 	// Add item functions
 	public void addBook(Book book) {
 		libraryBooks.add(book);
@@ -435,19 +480,15 @@ public class Library {
 			checkedOutBooks.remove(book);
 			book.setCanCheckout(true);
 		}
-		
-		Boolean userFound = false;
+	}
+	
+	public void returnBookUserCheckOut(Book book, User user) {
 		for(UserCheckOut uco : usersCheckOut)
 		{
 			if(user == uco.getUser())
 			{
-				userFound = true;
 				uco.returnBook(book);
 			}
-		}
-		if(!userFound)
-		{
-			// nothing to do
 		}
 	}
 
@@ -457,19 +498,15 @@ public class Library {
 			checkedOutAudioVideo.remove(av);
 			av.setCanCheckout(true);
 		}
-		
-		Boolean userFound = false;
+	}
+
+	public void returnAudioVideoUserCheckOut(AudioVideo av, User user) {
 		for(UserCheckOut uco : usersCheckOut)
 		{
 			if(user == uco.getUser())
 			{
-				userFound = true;
 				uco.returnAudioVideo(av);
 			}
-		}
-		if(!userFound)
-		{
-			// nothing to do
 		}
 	}
 

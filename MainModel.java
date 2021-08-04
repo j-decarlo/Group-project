@@ -394,7 +394,6 @@ public class MainModel {
 		
 		if(id > 0 && id < 11)	// Book
 		{
-			// TODO // fines
 			Boolean checkedOutByUser = false;
 			List<UserCheckOut> usersCheckOut = library.getUsersCheckOut();
 			for(UserCheckOut uco : usersCheckOut)
@@ -417,11 +416,11 @@ public class MainModel {
 			}
 			
 			library.returnBook(library.getBookFromID(id), library.getUserFromLibraryNumber(libraryNumber));
-			response = "Returned book ID: " + id + " (" + library.getBookFromID(id).getTitle() + ") " + "by library number: " + libraryNumber + " (" + library.getUserFromLibraryNumber(libraryNumber).getName() + ")";
+			//library.returnBookUserCheckOut(library.getBookFromID(id), library.getUserFromLibraryNumber(libraryNumber));
+			response = "Returned book ID: " + id + " (" + library.getBookFromID(id).getTitle() + ") " + "by library number: " + libraryNumber + " (" + library.getUserFromLibraryNumber(libraryNumber).getName() + ")\nFines: " + library.printFineString(library.getUserFromLibraryNumber(libraryNumber));
 		}
 		else if(id > 10 && id < 21)	// Audio/Video
 		{
-			// TODO // fines
 			Boolean checkedOutByUser = false;
 			List<UserCheckOut> usersCheckOut = library.getUsersCheckOut();
 			for(UserCheckOut uco : usersCheckOut)
@@ -444,7 +443,8 @@ public class MainModel {
 			}
 			
 			library.returnAudioVideo(library.getAVFromID(id), library.getUserFromLibraryNumber(libraryNumber));
-			response = "Returned audio/video item ID: " + id + " (" + library.getAVFromID(id).getTitle() + ") " + "by library number: " + libraryNumber + " (" + library.getUserFromLibraryNumber(libraryNumber).getName() + ")";
+			//library.returnAudioVideoUserCheckOut(library.getAVFromID(id), library.getUserFromLibraryNumber(libraryNumber));
+			response = "Returned audio/video item ID: " + id + " (" + library.getAVFromID(id).getTitle() + ") " + "by library number: " + libraryNumber + " (" + library.getUserFromLibraryNumber(libraryNumber).getName() + ")\nFines: " + library.printFineString(library.getUserFromLibraryNumber(libraryNumber));
 		}
 		else if(id > 20 && id < 26)	// Reference Book
 		{
