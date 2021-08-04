@@ -185,4 +185,85 @@ public class MainModel {
 		
 		return data;
 	}
+	
+	public String checkOutItem(Object objId, Object objLibraryNumber) {
+		String response = "";
+		int id = Integer.valueOf((String) objId);
+		int libraryNumber = Integer.valueOf((String) objLibraryNumber);
+		
+		if(id > 0 && id < 11)	// Book
+		{
+			// TODO
+			response = "Checked out book ID: " + id + " by library number: " + libraryNumber;
+		}
+		else if(id > 10 && id < 21)	// Audio/Video
+		{
+			// TODO
+			response = "Checked out audio/video item ID: " + id + " by library number: " + libraryNumber;
+		}
+		else if(id > 20 && id < 26)	// Reference Book
+		{
+			response = "Reference books cannot be checked out";
+		}
+		else if(id > 25 && id < 31)	// Magazine
+		{
+			response = "Magazines cannot be checked out";
+		}
+		
+		return response;
+	}
+	
+	public String requestItem(Object objId, Object objLibraryNumber) {
+		String response = "";
+		int id = Integer.valueOf((String) objId);
+		int libraryNumber = Integer.valueOf((String) objLibraryNumber);
+		
+		if(id > 0 && id < 11)	// Book
+		{
+			// TODO
+			response = "Requested book ID: " + id + " by library number: " + libraryNumber;
+		}
+		else if(id > 10 && id < 21)	// Audio/Video
+		{
+			// TODO
+			response = "Requested audio/video item ID: " + id + " by library number: " + libraryNumber;
+		}
+		else if(id > 20 && id < 26)	// Reference Book
+		{
+			response = "Reference books cannot be checked out";
+		}
+		else if(id > 25 && id < 31)	// Magazine
+		{
+			response = "Magazines cannot be checked out";
+		}
+		
+		return response;
+	}
+	
+	public String renewItem(Object objId, Object objLibraryNumber) {
+		String response = "";
+		int id = Integer.valueOf((String) objId);
+		int libraryNumber = Integer.valueOf((String) objLibraryNumber);
+		
+		if(id > 0 && id < 11)	// Book
+		{
+			// TODO
+			response = "Renewed book ID: " + id + " by library number: " + libraryNumber;
+		}
+		else if(id > 10 && id < 21)	// Audio/Video
+		{
+			// TODO
+			response = "Renewed audio/video item ID: " + id + " by library number: " + libraryNumber;
+		}
+		else if(id > 20 && id < 26)	// Reference Book
+		{
+			response = "Reference books cannot be checked out";
+		}
+		else if(id > 25 && id < 31)	// Magazine
+		{
+			response = "Magazines cannot be checked out";
+		}
+		
+		return response;
+	}
 }

@@ -65,7 +65,20 @@ public class MainController {
 		public void actionPerformed(ActionEvent e) {
 			try
 			{
-				mView.displayMessage("TODO");
+				Object id = mView.idInputDialog();
+				if(id == null)
+				{
+					return;
+				}
+				
+				Object libraryNumber = mView.libraryNumberInputDialog();
+				if(libraryNumber == null)
+				{
+					return;
+				}
+				
+				String response = mModel.checkOutItem(id, libraryNumber);
+				mView.displayMessage(response);
 			}
 			catch(Exception ex)
 			{
@@ -79,7 +92,20 @@ public class MainController {
 		public void actionPerformed(ActionEvent e) {
 			try
 			{
-				mView.displayMessage("TODO");
+				Object id = mView.idInputDialog();
+				if(id == null)
+				{
+					return;
+				}
+				
+				Object libraryNumber = mView.libraryNumberInputDialog();
+				if(libraryNumber == null)
+				{
+					return;
+				}
+				
+				String response = mModel.requestItem(id, libraryNumber);
+				mView.displayMessage(response);
 			}
 			catch(Exception ex)
 			{
@@ -93,7 +119,20 @@ public class MainController {
 		public void actionPerformed(ActionEvent e) {
 			try
 			{
-				mView.displayMessage("TODO");
+				Object id = mView.idInputDialog();
+				if(id == null)
+				{
+					return;
+				}
+				
+				Object libraryNumber = mView.libraryNumberInputDialog();
+				if(libraryNumber == null)
+				{
+					return;
+				}
+				
+				String response = mModel.renewItem(id, libraryNumber);
+				mView.displayMessage(response);
 			}
 			catch(Exception ex)
 			{
