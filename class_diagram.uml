@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="1286.0" y="1362.0">library_system.MainController.LibraryButtonListener</node>
+    <node x="714.0" y="387.5">library_system.ReferenceBook</node>
+    <node x="1014.5" y="0.0">library_system.Item</node>
+    <node x="1320.0" y="387.5">library_system.Magazine</node>
+    <node x="1497.0" y="0.0">library_system.UserCheckOut</node>
+    <node x="1114.0" y="331.5">library_system.AudioVideo</node>
+    <node x="0.0" y="0.0">library_system.MainView</node>
+    <node x="585.0" y="1218.0">library_system.CheckedOutBook</node>
+    <node x="0.0" y="1218.0">library_system.MainModel</node>
+    <node x="894.0" y="298.0">library_system.Book</node>
+    <node x="317.0" y="1218.0">library_system.CheckedOutAV</node>
+    <node x="1405.5" y="1218.0">library_system.MainController</node>
+    <node x="849.0" y="1218.0">library_system.User</node>
+    <node x="335.0" y="0.0">library_system.Library</node>
+    <node x="1540.0" y="1362.0">library_system.MainController.MainMenuButtonListener</node>
+    <node x="1072.0" y="1218.0">library_system.Fine</node>
+    <node x="0.0" y="1622.0">library_system.Main</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="library_system.AudioVideo" target="library_system.Item">
+      <point x="0.0" y="-80.5" />
+      <point x="1207.0" y="278.0" />
+      <point x="1122.0" y="278.0" />
+      <point x="21.5" y="124.0" />
+    </edge>
+    <edge source="library_system.MainController.MainMenuButtonListener" target="library_system.MainController">
+      <point x="0.0" y="-24.5" />
+      <point x="1657.0" y="1337.0" />
+      <point x="1592.25" y="1337.0" />
+      <point x="62.25" y="47.0" />
+    </edge>
+    <edge source="library_system.Magazine" target="library_system.Item">
+      <point x="0.0" y="-24.5" />
+      <point x="1386.0" y="268.0" />
+      <point x="1165.0" y="268.0" />
+      <point x="64.5" y="124.0" />
+    </edge>
+    <edge source="library_system.MainController.LibraryButtonListener" target="library_system.MainController">
+      <point x="0.0" y="-24.5" />
+      <point x="1403.0" y="1337.0" />
+      <point x="1467.75" y="1337.0" />
+      <point x="-62.25" y="47.0" />
+    </edge>
+    <edge source="library_system.ReferenceBook" target="library_system.Item">
+      <point x="0.0" y="-24.5" />
+      <point x="794.0" y="268.0" />
+      <point x="1036.0" y="268.0" />
+      <point x="-64.5" y="124.0" />
+    </edge>
+    <edge source="library_system.Book" target="library_system.Item">
+      <point x="0.0" y="-114.0" />
+      <point x="994.0" y="278.0" />
+      <point x="1079.0" y="278.0" />
+      <point x="-21.5" y="124.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="1316.4172715593827" y="3525.295013664262" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+    <Category>Inner Classes</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
