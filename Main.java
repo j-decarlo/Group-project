@@ -1,5 +1,9 @@
 package library_system;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.regex.*;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -108,69 +112,44 @@ public class Main {
     public Library initializeLibrary() {
         Library library = new Library();
         
-        Book book1 = new Book("Don Quixote", true, 15.00);
-        library.addBook(book1);
-        Book book2 = new Book("The Great Gatsby", true, 10.25);
-        library.addBook(book2);
-        Book book3 = new Book("Hamlet", true, 7.50);
-        library.addBook(book3);
-        Book book4 = new Book("The Odyssey", true, 12.00);
-        library.addBook(book4);
-        Book book5 = new Book("1984", true, 20.15);
-        library.addBook(book5);
-        Book book6 = new Book("Brave New World", false, 5.50);
-        library.addBook(book6);
-        Book book7 = new Book("On the Road", false, 3.00);
-        library.addBook(book7);
-        Book book8 = new Book("Lord of the Flies", false, 9.99);
-        library.addBook(book8);
-        Book book9 = new Book("Animal Farm", false, 14.75);
-        library.addBook(book9);
-        Book book10 = new Book("The Chronicles of Narnia", false, 18.00);
-        library.addBook(book10);
-        
-        AudioVideo av1 = new AudioVideo("Michael Jackson - Thriller", 6.66);
-        library.addAudioVideo(av1);
-        AudioVideo av2 = new AudioVideo("AC/DC - Back in Black", 5.00);
-        library.addAudioVideo(av2);
-        AudioVideo av3 = new AudioVideo("Pink Floyd - The Dark Side of the Moon", 11.11);
-        library.addAudioVideo(av3);
-        AudioVideo av4 = new AudioVideo("Eagles - Hotel California", 7.20);
-        library.addAudioVideo(av4);
-        AudioVideo av5 = new AudioVideo("The Beatles - Abbey Road", 12.00);
-        library.addAudioVideo(av5);
-        AudioVideo av6 = new AudioVideo("Avatar", 23.00);
-        library.addAudioVideo(av6);
-        AudioVideo av7 = new AudioVideo("Titanic", 13.25);
-        library.addAudioVideo(av7);
-        AudioVideo av8 = new AudioVideo("The Lion King", 8.08);
-        library.addAudioVideo(av8);
-        AudioVideo av9 = new AudioVideo("The Dark Knight", 13.00);
-        library.addAudioVideo(av9);
-        AudioVideo av10 = new AudioVideo("Shrek", 11.65);
-        library.addAudioVideo(av10);
-        
-        ReferenceBook ref1 = new ReferenceBook("World Book Encyclopedia");
-        library.addReferenceBook(ref1);
-        ReferenceBook ref2 = new ReferenceBook("Merriam-Webster's Mini Pocket Thesaurus");
-        library.addReferenceBook(ref2);
-        ReferenceBook ref3 = new ReferenceBook("Oxford English Dictionary");
-        library.addReferenceBook(ref3);
-        ReferenceBook ref4 = new ReferenceBook("MLA Handbook");
-        library.addReferenceBook(ref4);
-        ReferenceBook ref5 = new ReferenceBook("The Elements of Style");
-        library.addReferenceBook(ref5);
-        
-        Magazine mag1 = new Magazine("PEOPLE Magazine");
-        library.addMagazine(mag1);
-        Magazine mag2 = new Magazine("TV Guide Magazine");
-        library.addMagazine(mag2);
-        Magazine mag3 = new Magazine("Parents Magazine");
-        library.addMagazine(mag3);
-        Magazine mag4 = new Magazine("EatingWell Magazine");
-        library.addMagazine(mag4);
-        Magazine mag5 = new Magazine("Better Homes & Gardens Magazine");
-        library.addMagazine(mag5);
+        String filePath = new File("").getAbsolutePath();
+        filePath += System.getProperty("file.separator") + "src" + System.getProperty("file.separator") + "library_system" + System.getProperty("file.separator") + "library.csv";
+
+        // Read the csv file
+        try (BufferedReader br = new BufferedReader(new FileReader(filePath)))
+        {
+            String row;
+            while ((row = br.readLine()) != null)
+            {
+                String[] values = row.split(",");
+                
+                // Create and add items to the library
+                if(values[0].equals("book"))
+                {
+            		Book book = new Book(values[1], Boolean.parseBoolean(values[2]), Double.parseDouble(values[3]));
+            		library.addBook(book);
+            	}
+            	else if(values[0].equals("av"))
+            	{
+            		AudioVideo av = new AudioVideo(values[1], Double.parseDouble(values[3]));
+            		library.addAudioVideo(av);
+            	}
+            	else if(values[0].equals("reference"))
+            	{
+            		ReferenceBook ref = new ReferenceBook(values[1]);
+            		library.addReferenceBook(ref);
+            	}
+            	else if(values[0].equals("magazine"))
+            	{
+            		Magazine mag = new Magazine(values[1]);
+            		library.addMagazine(mag);
+            	}
+            }
+        }
+        catch (IOException e)
+        {
+			e.printStackTrace();
+		}
         
         return library;
     }
