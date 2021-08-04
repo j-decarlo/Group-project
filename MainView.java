@@ -24,12 +24,14 @@ public class MainView extends JFrame {
 	private JPanel mainPanel = new JPanel();
 	private JButton libraryButton = new JButton("View Library Items");
 	private JButton usersButton = new JButton("View Users");
+	private JButton saveButton = new JButton("Save Changes");
 
 	private JPanel libraryPanel = new JPanel();
 	private JButton mainMenuButton = new JButton("Main Menu");
 	private JButton checkOutButton = new JButton("Check Out");
 	private JButton requestButton = new JButton("Request");
 	private JButton renewButton = new JButton("Renew");	
+	private JButton returnButton = new JButton("Return");	
 	private JButton refBooksButton = new JButton("Reference Books");
 	private JButton magsButton = new JButton("Magazines");
 	
@@ -71,6 +73,7 @@ public class MainView extends JFrame {
 		
 		libraryButton.setAlignmentX(CENTER_ALIGNMENT);
 		usersButton.setAlignmentX(CENTER_ALIGNMENT);
+		saveButton.setAlignmentX(CENTER_ALIGNMENT);
 		
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.PAGE_AXIS));
 		
@@ -78,12 +81,15 @@ public class MainView extends JFrame {
 		mainPanel.add(libraryButton);
 		mainPanel.add(Box.createRigidArea(new Dimension(0, 10)));
 		mainPanel.add(usersButton);
+		mainPanel.add(Box.createRigidArea(new Dimension(0, 10)));
+		mainPanel.add(saveButton);
 		mainPanel.add(Box.createVerticalGlue());
 		
 		libraryPanel.add(mainMenuButton);
 		libraryPanel.add(checkOutButton);
 		libraryPanel.add(requestButton);
 		libraryPanel.add(renewButton);
+		libraryPanel.add(returnButton);
 		libraryPanel.add(refBooksButton);
 		libraryPanel.add(magsButton);
 		
@@ -118,6 +124,10 @@ public class MainView extends JFrame {
 		renewButton.addActionListener(listener);
 	}
 	
+	void returnButtonListener(ActionListener listener) {
+		returnButton.addActionListener(listener);
+	}
+	
 	void refBooksButtonListener(ActionListener listener) {
 		refBooksButton.addActionListener(listener);
 	}
@@ -146,6 +156,11 @@ public class MainView extends JFrame {
 	
 	void usersButton2Listener(ActionListener listener) {
 		usersButton2.addActionListener(listener);
+	}
+	
+	
+	void saveButtonListener(ActionListener listener) {
+		saveButton.addActionListener(listener);
 	}
 	
 	

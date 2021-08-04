@@ -83,6 +83,20 @@ public class Library {
 		}
 		return user;
 	}
+	
+	public User getUserFromLibraryNumber(int libraryNumberInt) {
+		String libraryNumber = String.valueOf(libraryNumberInt);
+		User user = new User();
+		for(User libUser : libraryUsers)
+		{
+			if(libUser.getLibraryNumber().equals(libraryNumber))
+			{
+				user = libUser;
+				break;
+			}
+		}
+		return user;
+	}
 
 	public Book getBookFromID(int id) {
 		Book book = null;
@@ -112,6 +126,22 @@ public class Library {
 
 	public List<UserCheckOut> getUsersCheckOut() {
 		return usersCheckOut;
+	}
+	
+	public List<Book> getCheckedOutBooks() {
+		return checkedOutBooks;
+	}
+
+	public List<AudioVideo> getCheckedOutAudioVideo() {
+		return checkedOutAudioVideo;
+	}
+	
+	public List<Book> getRequestedBooks() {
+		return bookRequests;
+	}
+
+	public List<AudioVideo> getRequestedAudioVideo() {
+		return audioVideoRequests;
 	}
 
 	
@@ -219,14 +249,6 @@ public class Library {
 	
 	// Check out items
 	public Boolean checkOutBook(Book book, User user) {
-		if(bookRequests.contains(book))
-		{
-			bookRequests.remove(book);
-		}
-		
-		checkedOutBooks.add(book);
-		book.setCanCheckout(false);
-		
 		Boolean userFound = false;
 		for(UserCheckOut uco : usersCheckOut)
 		{
@@ -236,18 +258,33 @@ public class Library {
 				if(user.getAge() <= 12 && uco.getCheckedOutTotal() == 5)
 				{
 					// deny the child
-					// beginning logic will be messed up - FIX
 					System.out.println("You have met the total limit of books you can check out.");
 					return false;
 				}
 				else
 				{
+					if(bookRequests.contains(book))
+					{
+						bookRequests.remove(book);
+					}
+					
+					checkedOutBooks.add(book);
+					book.setCanCheckout(false);
+					
 					uco.checkOutBook(book);
 				}
 			}
 		}
 		if(!userFound)
 		{
+			if(bookRequests.contains(book))
+			{
+				bookRequests.remove(book);
+			}
+			
+			checkedOutBooks.add(book);
+			book.setCanCheckout(false);
+			
 			UserCheckOut newUserCheckOut = new UserCheckOut(user);
 			newUserCheckOut.checkOutBook(book);
 			usersCheckOut.add(newUserCheckOut);
@@ -257,14 +294,6 @@ public class Library {
 	}
 	
 	public Boolean checkOutBook(Book book, User user, Date date) {
-		if(bookRequests.contains(book))
-		{
-			bookRequests.remove(book);
-		}
-		
-		checkedOutBooks.add(book);
-		book.setCanCheckout(false);
-		
 		Boolean userFound = false;
 		for(UserCheckOut uco : usersCheckOut)
 		{
@@ -274,18 +303,33 @@ public class Library {
 				if(user.getAge() <= 12 && uco.getCheckedOutTotal() == 5)
 				{
 					// deny the child
-					// beginning logic will be messed up - FIX
 					System.out.println("You have met the total limit of books you can check out.");
 					return false;
 				}
 				else
 				{
+					if(bookRequests.contains(book))
+					{
+						bookRequests.remove(book);
+					}
+					
+					checkedOutBooks.add(book);
+					book.setCanCheckout(false);
+					
 					uco.checkOutBook(book, date);
 				}
 			}
 		}
 		if(!userFound)
 		{
+			if(bookRequests.contains(book))
+			{
+				bookRequests.remove(book);
+			}
+			
+			checkedOutBooks.add(book);
+			book.setCanCheckout(false);
+			
 			UserCheckOut newUserCheckOut = new UserCheckOut(user);
 			newUserCheckOut.checkOutBook(book, date);
 			usersCheckOut.add(newUserCheckOut);
@@ -295,14 +339,6 @@ public class Library {
 	}
 
 	public Boolean checkOutAudioVideo(AudioVideo av, User user) {
-		if(audioVideoRequests.contains(av))
-		{
-			audioVideoRequests.remove(av);
-		}
-		
-		checkedOutAudioVideo.add(av);
-		av.setCanCheckout(false);
-		
 		Boolean userFound = false;
 		for(UserCheckOut uco : usersCheckOut)
 		{
@@ -312,18 +348,33 @@ public class Library {
 				if(user.getAge() <= 12 && uco.getCheckedOutTotal() == 5)
 				{
 					// deny the child
-					// beginning logic will be messed up - FIX
 					System.out.println("You have met the total limit of audio videos you can check out.");
 					return false;
 				}
 				else
 				{
+					if(audioVideoRequests.contains(av))
+					{
+						audioVideoRequests.remove(av);
+					}
+					
+					checkedOutAudioVideo.add(av);
+					av.setCanCheckout(false);
+					
 					uco.checkOutAudioVideo(av);
 				}
 			}
 		}
 		if(!userFound)
 		{
+			if(audioVideoRequests.contains(av))
+			{
+				audioVideoRequests.remove(av);
+			}
+			
+			checkedOutAudioVideo.add(av);
+			av.setCanCheckout(false);
+			
 			UserCheckOut newUserCheckOut = new UserCheckOut(user);
 			newUserCheckOut.checkOutAudioVideo(av);
 			usersCheckOut.add(newUserCheckOut);
@@ -333,14 +384,6 @@ public class Library {
 	}
 
 	public Boolean checkOutAudioVideo(AudioVideo av, User user, Date date) {
-		if(audioVideoRequests.contains(av))
-		{
-			audioVideoRequests.remove(av);
-		}
-		
-		checkedOutAudioVideo.add(av);
-		av.setCanCheckout(false);
-		
 		Boolean userFound = false;
 		for(UserCheckOut uco : usersCheckOut)
 		{
@@ -350,18 +393,33 @@ public class Library {
 				if(user.getAge() <= 12 && uco.getCheckedOutTotal() == 5)
 				{
 					// deny the child
-					// beginning logic will be messed up - FIX
 					System.out.println("You have met the total limit of audio videos you can check out.");
 					return false;
 				}
 				else
 				{
+					if(audioVideoRequests.contains(av))
+					{
+						audioVideoRequests.remove(av);
+					}
+					
+					checkedOutAudioVideo.add(av);
+					av.setCanCheckout(false);
+					
 					uco.checkOutAudioVideo(av, date);
 				}
 			}
 		}
 		if(!userFound)
 		{
+			if(audioVideoRequests.contains(av))
+			{
+				audioVideoRequests.remove(av);
+			}
+			
+			checkedOutAudioVideo.add(av);
+			av.setCanCheckout(false);
+			
 			UserCheckOut newUserCheckOut = new UserCheckOut(user);
 			newUserCheckOut.checkOutAudioVideo(av, date);
 			usersCheckOut.add(newUserCheckOut);

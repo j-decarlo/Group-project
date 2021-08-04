@@ -193,13 +193,45 @@ public class MainModel {
 		
 		if(id > 0 && id < 11)	// Book
 		{
-			// TODO
-			response = "Checked out book ID: " + id + " by library number: " + libraryNumber;
+			List<Book> checkedOutBooks = library.getCheckedOutBooks();
+			for(Book book : checkedOutBooks)
+			{
+				if(book.getID() == id)
+				{
+					return response = "Book is already checked out.\nTry requesting the item instead.";
+				}
+			}
+			
+			Boolean valid = library.checkOutBook(library.getBookFromID(id), library.getUserFromLibraryNumber(libraryNumber));
+			if(valid)
+			{
+				response = "Checked out book ID: " + id + " (" + library.getBookFromID(id).getTitle() + ") " + "by library number: " + libraryNumber + " (" + library.getUserFromLibraryNumber(libraryNumber).getName() + ")";
+			}
+			else
+			{
+				response = "Book cannot be checked out.\nYou have met the total limit of items you can check out.";
+			}
 		}
 		else if(id > 10 && id < 21)	// Audio/Video
 		{
-			// TODO
-			response = "Checked out audio/video item ID: " + id + " by library number: " + libraryNumber;
+			List<AudioVideo> checkedOutAudioVideo = library.getCheckedOutAudioVideo();
+			for(AudioVideo av : checkedOutAudioVideo)
+			{
+				if(av.getID() == id)
+				{
+					return response = "Audio/video item is already checked out.\nTry requesting the item instead.";
+				}
+			}
+			
+			Boolean valid = library.checkOutAudioVideo(library.getAVFromID(id), library.getUserFromLibraryNumber(libraryNumber));
+			if(valid)
+			{
+				response = "Checked out audio/video item ID: " + id + " (" + library.getAVFromID(id).getTitle() + ") " + "by library number: " + libraryNumber + " (" + library.getUserFromLibraryNumber(libraryNumber).getName() + ")";
+			}
+			else
+			{
+				response = "Audio/video item cannot be checked out.\nYou have met the total limit of items you can check out.";
+			}
 		}
 		else if(id > 20 && id < 26)	// Reference Book
 		{
@@ -263,6 +295,41 @@ public class MainModel {
 		{
 			response = "Magazines cannot be checked out";
 		}
+		
+		return response;
+	}
+	
+	public String returnItem(Object objId, Object objLibraryNumber) {
+		String response = "";
+		int id = Integer.valueOf((String) objId);
+		int libraryNumber = Integer.valueOf((String) objLibraryNumber);
+		
+		if(id > 0 && id < 11)	// Book
+		{
+			// TODO
+			response = "Returned book ID: " + id + " by library number: " + libraryNumber;
+		}
+		else if(id > 10 && id < 21)	// Audio/Video
+		{
+			// TODO
+			response = "Returned audio/video item ID: " + id + " by library number: " + libraryNumber;
+		}
+		else if(id > 20 && id < 26)	// Reference Book
+		{
+			response = "Reference books cannot be checked out";
+		}
+		else if(id > 25 && id < 31)	// Magazine
+		{
+			response = "Magazines cannot be checked out";
+		}
+		
+		return response;
+	}
+	
+	public String saveChangesExport() {
+		String response = "TODO";
+
+		// TODO
 		
 		return response;
 	}

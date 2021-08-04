@@ -20,6 +20,7 @@ public class MainController {
 		this.mView.checkOutButtonListener(new CheckOutButtonListener());
 		this.mView.requestButtonListener(new RequestButtonListener());
 		this.mView.renewButtonListener(new RenewButtonListener());
+		this.mView.returnButtonListener(new ReturnButtonListener());
 		this.mView.refBooksButtonListener(new RefBooksButtonListener());
 		this.mView.magsButtonListener(new MagsButtonListener());
 		
@@ -29,6 +30,8 @@ public class MainController {
 		
 		this.mView.usersButton2Listener(new UsersButton2Listener());
 		this.mView.mainMenuButton3Listener(new MainMenuButton3Listener());
+		
+		this.mView.saveButtonListener(new SaveButtonListener());
 	}
 	
 	
@@ -142,6 +145,33 @@ public class MainController {
 		}
 	}
 
+	class ReturnButtonListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			try
+			{
+				Object id = mView.idInputDialog();
+				if(id == null)
+				{
+					return;
+				}
+				
+				Object libraryNumber = mView.libraryNumberInputDialog();
+				if(libraryNumber == null)
+				{
+					return;
+				}
+				
+				String response = mModel.returnItem(id, libraryNumber);
+				mView.displayMessage(response);
+			}
+			catch(Exception ex)
+			{
+				System.out.println(ex);
+				mView.displayErrorMessage("Error:\n" + ex);
+			}
+		}
+	}
+
 	class RefBooksButtonListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			try
@@ -176,6 +206,23 @@ public class MainController {
 			try
 			{
 				mView.showUsersPanel(mModel.getUsersItemsData());
+			}
+			catch(Exception ex)
+			{
+				System.out.println(ex);
+				mView.displayErrorMessage("Error:\n" + ex);
+			}
+		}
+	}
+	
+	class SaveButtonListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			try
+			{
+				// TODO
+				
+				String response = mModel.saveChangesExport();
+				mView.displayMessage(response);
 			}
 			catch(Exception ex)
 			{
