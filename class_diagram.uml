@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="10.5" y="1070.5">library_system.ReferenceBook</node>
+    <node x="932.456501831502" y="1070.5">library_system.Magazine</node>
+    <node x="412.296875" y="0.0">library_system.Item</node>
+    <node x="371.539105425824" y="915.0">library_system.UserCheckOut</node>
+    <node x="637.234375" y="331.5">library_system.AudioVideo</node>
+    <node x="233.64467433608058" y="574.0">library_system.CheckedOutBook</node>
+    <node x="184.22660542582412" y="298.0">library_system.Book</node>
+    <node x="514.6446743360806" y="574.0">library_system.CheckedOutAV</node>
+    <node x="777.6446743360806" y="585.5">library_system.User</node>
+    <node x="496.5447144001832" y="1385.0">library_system.Library</node>
+    <node x="1164.956501831502" y="0.0">library_system.Fine</node>
+    <node x="699.6362322573261" y="2297.0">library_system.Main</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="library_system.UserCheckOut" target="library_system.User">
+      <point x="107.25000000000006" y="-180.0" />
+      <point x="621.789105425824" y="885.0" />
+      <point x="790.9303886217948" y="885.0" />
+      <point x="-79.71428571428578" y="124.0" />
+    </edge>
+    <edge source="library_system.Library" target="library_system.Book">
+      <point x="-88.59375" y="-411.0" />
+      <point x="565.4509644001832" y="1335.0" />
+      <point x="223.14467433608058" y="1335.0" />
+      <point x="223.14467433608058" y="554.0" />
+      <point x="275.2266054258241" y="554.0" />
+      <point x="-13.0" y="103.0" />
+    </edge>
+    <edge source="library_system.Library" target="library_system.UserCheckOut">
+      <point x="-49.21875" y="-411.0" />
+      <point x="604.8259644001832" y="1315.0" />
+      <point x="419.20577209249063" y="1315.0" />
+      <point x="-95.33333333333331" y="180.0" />
+    </edge>
+    <edge source="library_system.AudioVideo" target="library_system.Item">
+      <point x="0.0" y="-69.5" />
+      <point x="734.234375" y="278.0" />
+      <point x="524.796875" y="278.0" />
+      <point x="22.5" y="124.0" />
+    </edge>
+    <edge source="library_system.Main" target="library_system.Library">
+      <point x="-27.5" y="-57.5" />
+      <point x="782.1362322573261" y="2237.0" />
+      <point x="575.2947144001832" y="2237.0" />
+      <point x="-78.75" y="411.0" />
+    </edge>
+    <edge source="library_system.Magazine" target="library_system.Item">
+      <point x="0.0" y="-24.5" />
+      <point x="1002.456501831502" y="895.0" />
+      <point x="1110.769001831502" y="895.0" />
+      <point x="1110.769001831502" y="268.0" />
+      <point x="569.796875" y="268.0" />
+      <point x="67.5" y="124.0" />
+    </edge>
+    <edge source="library_system.Main" target="library_system.ReferenceBook">
+      <point x="-64.16666666666663" y="-57.5" />
+      <point x="745.4695655906594" y="2257.0" />
+      <point x="70.14467433608058" y="2257.0" />
+      <point x="70.14467433608058" y="1365.0" />
+      <point x="73.5" y="1365.0" />
+      <point x="-21.0" y="24.5" />
+    </edge>
+    <edge source="library_system.UserCheckOut" target="library_system.AudioVideo">
+      <point x="-11.916666666666572" y="-180.0" />
+      <point x="502.6224387591574" y="895.0" />
+      <point x="493.1446743360806" y="895.0" />
+      <point x="493.1446743360806" y="524.0" />
+      <point x="649.359375" y="524.0" />
+      <point x="-84.875" y="69.5" />
+    </edge>
+    <edge source="library_system.Main" target="library_system.Book">
+      <point x="-45.83333333333337" y="-57.5" />
+      <point x="763.8028989239926" y="2247.0" />
+      <point x="189.0" y="2247.0" />
+      <point x="189.0" y="534.0" />
+      <point x="223.22660542582412" y="534.0" />
+      <point x="-65.0" y="103.0" />
+    </edge>
+    <edge source="library_system.Library" target="library_system.AudioVideo">
+      <point x="49.21875" y="-411.0" />
+      <point x="703.2634644001832" y="1315.0" />
+      <point x="767.1446743360806" y="1315.0" />
+      <point x="767.1446743360806" y="554.0" />
+      <point x="770.609375" y="554.0" />
+      <point x="36.375" y="69.5" />
+    </edge>
+    <edge source="library_system.CheckedOutAV" target="library_system.AudioVideo">
+      <point x="57.75" y="-135.5" />
+      <point x="687.8946743360806" y="554.0" />
+      <point x="722.109375" y="554.0" />
+      <point x="-12.125" y="69.5" />
+    </edge>
+    <edge source="library_system.CheckedOutBook" target="library_system.Book">
+      <point x="56.75" y="-135.5" />
+      <point x="403.8946743360806" y="554.0" />
+      <point x="327.2266054258241" y="554.0" />
+      <point x="39.0" y="103.0" />
+    </edge>
+    <edge source="library_system.UserCheckOut" target="library_system.CheckedOutAV">
+      <point x="35.75000000000006" y="-180.0" />
+      <point x="550.289105425824" y="895.0" />
+      <point x="543.5196743360806" y="895.0" />
+      <point x="-86.625" y="135.5" />
+    </edge>
+    <edge source="library_system.ReferenceBook" target="library_system.Item">
+      <point x="0.0" y="-24.5" />
+      <point x="94.5" y="268.0" />
+      <point x="434.796875" y="268.0" />
+      <point x="-67.5" y="124.0" />
+    </edge>
+    <edge source="library_system.Main" target="library_system.User">
+      <point x="27.5" y="-57.5" />
+      <point x="837.1362322573261" y="2237.0" />
+      <point x="921.956501831502" y="2237.0" />
+      <point x="921.956501831502" y="895.0" />
+      <point x="950.3589600503664" y="895.0" />
+      <point x="79.71428571428578" y="124.0" />
+    </edge>
+    <edge source="library_system.UserCheckOut" target="library_system.Book">
+      <point x="-59.5833333333332" y="-180.0" />
+      <point x="454.95577209249075" y="895.0" />
+      <point x="471.1446743360806" y="895.0" />
+      <point x="471.1446743360806" y="544.0" />
+      <point x="353.2266054258241" y="544.0" />
+      <point x="65.0" y="103.0" />
+    </edge>
+    <edge source="library_system.Library" target="library_system.User">
+      <point x="68.90625" y="-411.0" />
+      <point x="722.9509644001832" y="1325.0" />
+      <point x="851.8589600503662" y="1325.0" />
+      <point x="851.8589600503662" y="895.0" />
+      <point x="844.073245764652" y="895.0" />
+      <point x="-26.571428571428555" y="124.0" />
+    </edge>
+    <edge source="library_system.Main" target="library_system.AudioVideo">
+      <point x="100.83333333333337" y="-57.5" />
+      <point x="910.4695655906594" y="2277.0" />
+      <point x="1093.956501831502" y="2277.0" />
+      <point x="1093.956501831502" y="544.0" />
+      <point x="819.109375" y="544.0" />
+      <point x="84.875" y="69.5" />
+    </edge>
+    <edge source="library_system.Library" target="library_system.Magazine">
+      <point x="127.96875" y="-411.0" />
+      <point x="782.0134644001832" y="1355.0" />
+      <point x="949.956501831502" y="1355.0" />
+      <point x="-52.5" y="24.5" />
+    </edge>
+    <edge source="library_system.Library" target="library_system.ReferenceBook">
+      <point x="-127.96875" y="-411.0" />
+      <point x="526.0759644001832" y="1355.0" />
+      <point x="157.5" y="1355.0" />
+      <point x="63.0" y="24.5" />
+    </edge>
+    <edge source="library_system.Book" target="library_system.Item">
+      <point x="0.0" y="-103.0" />
+      <point x="288.2266054258241" y="278.0" />
+      <point x="479.796875" y="278.0" />
+      <point x="-22.5" y="124.0" />
+    </edge>
+    <edge source="library_system.Library" target="library_system.CheckedOutBook">
+      <point x="-68.90625" y="-411.0" />
+      <point x="585.1384644001832" y="1325.0" />
+      <point x="285.1641054258241" y="1325.0" />
+      <point x="285.1641054258241" y="895.0" />
+      <point x="262.0196743360806" y="895.0" />
+      <point x="-85.125" y="135.5" />
+    </edge>
+    <edge source="library_system.UserCheckOut" target="library_system.CheckedOutBook">
+      <point x="-107.24999999999983" y="-180.0" />
+      <point x="407.2891054258241" y="885.0" />
+      <point x="375.5196743360806" y="885.0" />
+      <point x="28.375" y="135.5" />
+    </edge>
+    <edge source="library_system.Main" target="library_system.Magazine">
+      <point x="64.16666666666663" y="-57.5" />
+      <point x="873.8028989239926" y="2257.0" />
+      <point x="1055.6790579212457" y="2257.0" />
+      <point x="52.5" y="24.5" />
+    </edge>
+    <edge source="library_system.Library" target="library_system.CheckedOutAV">
+      <point x="9.84375" y="-411.0" />
+      <point x="663.8884644001832" y="1295.0" />
+      <point x="701.5524839743591" y="1295.0" />
+      <point x="701.5524839743591" y="875.0" />
+      <point x="716.7696743360806" y="875.0" />
+      <point x="86.625" y="135.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.3840460526315789" x="671.0" y="1206.0" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+    <Category>Inner Classes</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
