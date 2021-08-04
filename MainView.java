@@ -22,15 +22,18 @@ public class MainView extends JFrame {
 	private JButton mainMenuButton = new JButton("Main Menu");
 	private JButton libraryButton3 = new JButton("Check Out");
 	private JButton libraryButton4 = new JButton("Check Out Audio/Video Materials");
+	private JButton libraryButton5 = new JButton("Request a Book");
+	private JButton libraryButton6 = new JButton("Renew a Book");	
 	private JButton libraryButton7 = new JButton("Reference Books");
 	private JButton libraryButton8 = new JButton("Magazines");
+	
+	
 	private JTable libraryTable = new JTable();
 	private JScrollPane libraryTableScrollPane = new JScrollPane();
 	
 	//private JPanel mainPanel2 = new JPanel();
 	private JButton libraryButton2 = new JButton("View Users");
-	private JButton libraryButton5 = new JButton("Request a Book");
-	private JButton libraryButton6 = new JButton("Renew a Book");
+
 
 
 	// Constructor //////////////////////////////////////////////////
@@ -61,9 +64,9 @@ public class MainView extends JFrame {
 
 		libraryPanel.add(libraryButton4);
 
-		mainPanel.add(libraryButton5);
+		libraryPanel.add(libraryButton5);
 
-		mainPanel.add(libraryButton6);
+		libraryPanel.add(libraryButton6);
 
 		libraryPanel.add(libraryButton7);
 
