@@ -394,13 +394,55 @@ public class MainModel {
 		
 		if(id > 0 && id < 11)	// Book
 		{
-			// TODO // if not checked out // fines
+			// TODO // fines
+			Boolean checkedOutByUser = false;
+			List<UserCheckOut> usersCheckOut = library.getUsersCheckOut();
+			for(UserCheckOut uco : usersCheckOut)
+			{
+				if(uco.getUser() == library.getUserFromLibraryNumber(libraryNumber))
+				{
+					List<CheckedOutBook> checkedOutBooks = uco.getCheckedOutBooks();
+					for(CheckedOutBook cBook : checkedOutBooks)
+					{
+						if(cBook.getBook() == library.getBookFromID(id))
+						{
+							checkedOutByUser = true;
+						}
+					}
+				}
+			}
+			if(!checkedOutByUser)
+			{
+				return response = "Book was not checked out by user";
+			}
+			
 			library.returnBook(library.getBookFromID(id), library.getUserFromLibraryNumber(libraryNumber));
 			response = "Returned book ID: " + id + " (" + library.getBookFromID(id).getTitle() + ") " + "by library number: " + libraryNumber + " (" + library.getUserFromLibraryNumber(libraryNumber).getName() + ")";
 		}
 		else if(id > 10 && id < 21)	// Audio/Video
 		{
-			// TODO // if not checked out // fines
+			// TODO // fines
+			Boolean checkedOutByUser = false;
+			List<UserCheckOut> usersCheckOut = library.getUsersCheckOut();
+			for(UserCheckOut uco : usersCheckOut)
+			{
+				if(uco.getUser() == library.getUserFromLibraryNumber(libraryNumber))
+				{
+					List<CheckedOutAV> checkedOutAudioVideo = uco.getCheckedOutAudioVideo();
+					for(CheckedOutAV cAV : checkedOutAudioVideo)
+					{
+						if(cAV.getAudioVideo() == library.getAVFromID(id))
+						{
+							checkedOutByUser = true;
+						}
+					}
+				}
+			}
+			if(!checkedOutByUser)
+			{
+				return response = "Audio/video item was not checked out by user";
+			}
+			
 			library.returnAudioVideo(library.getAVFromID(id), library.getUserFromLibraryNumber(libraryNumber));
 			response = "Returned audio/video item ID: " + id + " (" + library.getAVFromID(id).getTitle() + ") " + "by library number: " + libraryNumber + " (" + library.getUserFromLibraryNumber(libraryNumber).getName() + ")";
 		}
