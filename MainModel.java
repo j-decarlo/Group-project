@@ -11,6 +11,7 @@ public class MainModel {
 	private List<ReferenceBook> libraryReferenceBooks;
 	private List<Magazine> libraryMagazines;
 	private List<User> libraryUsers;
+	private List<UserCheckOut> usersCheckOut;
 	
 	
 	public void setLibrary(Library _library) {
@@ -76,6 +77,110 @@ public class MainModel {
 			Object[] dataRow = {user.getName(), user.getAddress(), user.getPhoneNumber(), user.getLibraryNumber(), user.getAge()};
 			data[idx] = dataRow;
 			++idx;
+		}
+		
+		return data;
+	}
+	
+	public Object[][] getUserDataItemsData() {
+		
+		//Object[] columnNames = {"Name", "ID", "Type", "Title", "Requested", "Checked Out", "Checkout Date"};
+		
+		usersCheckOut = library.getUsersCheckOut();
+
+		int size = 0;
+		for(UserCheckOut uco : usersCheckOut)
+		{
+			size += uco.getCheckedOutTotal();
+			size += uco.getBookRequests().size();
+			size += uco.getAudioVideoRequests().size();
+		}
+		
+		Object[][] data = new Object[size][7];
+		int idx = 0;
+		
+		for(UserCheckOut uco : usersCheckOut)
+		{
+			if(uco.getCheckedOutBooks().size() > 0)
+			{
+				try
+				{
+					List<CheckedOutBook> checkedOutBooks = uco.getCheckedOutBooks();
+					for(CheckedOutBook cBook : checkedOutBooks)
+					{
+						Object[] dataRow = {uco.getUser().getName(), cBook.getBook().getID(), "Book", cBook.getBook().getTitle(), "N/A", "Yes", cBook.getCheckedOutDateString()};
+						data[idx] = dataRow;
+						++idx;
+					}
+				}
+				catch(Exception ex)
+				{
+					//System.out.println(ex);
+				}
+			}
+		}
+		
+		for(UserCheckOut uco : usersCheckOut)
+		{
+			if(uco.getCheckedOutAudioVideo().size() > 0)
+			{
+				try
+				{
+					List<CheckedOutAV> checkedOutAudioVideo = uco.getCheckedOutAudioVideo();
+					for(CheckedOutAV cAV : checkedOutAudioVideo)
+					{
+						Object[] dataRow = {uco.getUser().getName(), cAV.getAudioVideo().getID(), "Audio/Video", cAV.getAudioVideo().getTitle(), "N/A", "Yes", cAV.getCheckedOutDateString()};
+						data[idx] = dataRow;
+						++idx;
+					}
+				}
+				catch(Exception ex)
+				{
+					//System.out.println(ex);
+				}
+			}
+		}
+		
+		for(UserCheckOut uco : usersCheckOut)
+		{
+			if(uco.getBookRequests().size() > 0)
+			{
+				try
+				{
+					List<Book> bookRequests = uco.getBookRequests();
+					for(Book book : bookRequests)
+					{
+						Object[] dataRow = {uco.getUser().getName(), book.getID(), "Book", book.getTitle(), "Yes", "N/A", "N/A"};
+						data[idx] = dataRow;
+						++idx;
+					}
+				}
+				catch(Exception ex)
+				{
+					//System.out.println(ex);
+				}
+			}
+		}
+		
+		for(UserCheckOut uco : usersCheckOut)
+		{
+			if(uco.getAudioVideoRequests().size() > 0)
+			{
+				try
+				{
+					List<AudioVideo> audioVideoRequests = uco.getAudioVideoRequests();
+					for(AudioVideo av : audioVideoRequests)
+					{
+						Object[] dataRow = {uco.getUser().getName(), av.getID(), "Book", av.getTitle(), "Yes", "N/A", "N/A"};
+						data[idx] = dataRow;
+						++idx;
+					}
+				}
+				catch(Exception ex)
+				{
+					//System.out.println(ex);
+				}
+			}
 		}
 		
 		return data;

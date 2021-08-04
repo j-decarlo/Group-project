@@ -47,6 +47,14 @@ public class UserCheckOut {
 		return checkedOutAudioVideo;
 	}
 	
+	public List<Book> getBookRequests() {
+		return bookRequests;
+	}
+	
+	public List<AudioVideo> getAudioVideoRequests() {
+		return audioVideoRequests;
+	}
+	
 	public int getCheckedOutTotal() {
 		return checkedOutTotal;
 	}

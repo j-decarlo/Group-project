@@ -110,6 +110,10 @@ public class Library {
 		return av;
 	}
 
+	public List<UserCheckOut> getUsersCheckOut() {
+		return usersCheckOut;
+	}
+
 	
 	// Setters //////////////////////////////////////////////////
 	public void setBooks(List<Book> _libraryBooks) {

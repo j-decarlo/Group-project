@@ -36,6 +36,13 @@ public class MainView extends JFrame {
 	
 	private JTable usersTable = new JTable();
 	private JScrollPane usersTableScrollPane = new JScrollPane();
+	
+	private JPanel userDataPanel = new JPanel();
+	private JButton mainMenuButton3 = new JButton("Main Menu");
+	private JButton usersButton2 = new JButton("View Users");
+	
+	private JTable userDataTable = new JTable();
+	private JScrollPane userDataTableScrollPane = new JScrollPane();
 
 
 	// Constructor //////////////////////////////////////////////////
@@ -68,6 +75,9 @@ public class MainView extends JFrame {
 		
 		usersPanel.add(mainMenuButton2);
 		usersPanel.add(userDataButton);
+		
+		userDataPanel.add(mainMenuButton3);
+		userDataPanel.add(usersButton2);
 
 		this.add(mainPanel);
 	}
@@ -114,6 +124,15 @@ public class MainView extends JFrame {
 	void userDataButtonListener(ActionListener listener) {
 		userDataButton.addActionListener(listener);
 	}
+
+	
+	void mainMenuButton3Listener(ActionListener listener) {
+		mainMenuButton3.addActionListener(listener);
+	}
+	
+	void usersButton2Listener(ActionListener listener) {
+		usersButton2.addActionListener(listener);
+	}
 	
 	
 	// Change the view
@@ -137,7 +156,6 @@ public class MainView extends JFrame {
 			System.out.println(ex);
 			displayErrorMessage("Error:\n" + ex);
 		}
-		
 		
 		this.remove(mainPanel);
 		this.add(libraryPanel);
@@ -166,9 +184,62 @@ public class MainView extends JFrame {
 			displayErrorMessage("Error:\n" + ex);
 		}
 		
-		
 		this.remove(mainPanel);
 		this.add(usersPanel);
+		this.revalidate();
+		this.repaint();
+	}
+	
+	void showUsersPanelFromUserData(Object[][] tableData) {
+		try
+		{
+			usersPanel.remove(usersTableScrollPane);
+			usersPanel.remove(usersTable);
+			
+			Object[] columnNames = {"Name", "Address", "Phone Number", "Library Number", "Age"};
+			usersTable = new JTable(tableData, columnNames);
+			
+			usersTableScrollPane = new JScrollPane(usersTable);
+			usersTable.setFillsViewportHeight(true);
+			usersPanel.add(usersTableScrollPane);
+			usersPanel.revalidate();
+			usersPanel.repaint();
+		}
+		catch(Exception ex)
+		{
+			System.out.println(ex);
+			displayErrorMessage("Error:\n" + ex);
+		}
+		
+		this.remove(userDataPanel);
+		this.add(usersPanel);
+		this.revalidate();
+		this.repaint();
+	}
+	
+	void showUserDataPanel(Object[][] tableData) {
+		try
+		{
+			userDataPanel.remove(userDataTableScrollPane);
+			userDataPanel.remove(userDataTable);
+			
+			Object[] columnNames = {"Name", "ID", "Type", "Title", "Requested", "Checked Out", "Checkout Date"};
+			userDataTable = new JTable(tableData, columnNames);
+			
+			userDataTableScrollPane = new JScrollPane(userDataTable);
+			userDataTable.setFillsViewportHeight(true);
+			userDataPanel.add(userDataTableScrollPane);
+			userDataPanel.revalidate();
+			userDataPanel.repaint();
+		}
+		catch(Exception ex)
+		{
+			System.out.println(ex);
+			displayErrorMessage("Error:\n" + ex);
+		}
+		
+		this.remove(usersPanel);
+		this.add(userDataPanel);
 		this.revalidate();
 		this.repaint();
 	}
@@ -187,6 +258,13 @@ public class MainView extends JFrame {
 		this.repaint();
 	}
 	
+	void showMainMenuPanelFromUserData() {
+		this.remove(userDataPanel);
+		this.add(mainPanel);
+		this.revalidate();
+		this.repaint();
+	}
+	
 	
 	// Open a pop-up that contains the message passed
 	void displayMessage(String message) {
@@ -196,5 +274,13 @@ public class MainView extends JFrame {
 	// Open a pop-up that contains the error message passed
 	void displayErrorMessage(String errorMessage) {
 		JOptionPane.showMessageDialog(this, errorMessage);
+	}
+	
+	void displayReferenceBookMessage() {
+		JOptionPane.showMessageDialog(this, "Reference books cannot be checked out.");
+	}
+	
+	void displayMagazineMessage() {
+		JOptionPane.showMessageDialog(this, "Magazines cannot be checked out.");
 	}
 }

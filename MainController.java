@@ -26,6 +26,9 @@ public class MainController {
 		this.mView.usersButtonListener(new UsersButtonListener());
 		this.mView.mainMenuButton2Listener(new MainMenuButton2Listener());
 		this.mView.userDataButtonListener(new UserDataButtonListener());
+		
+		this.mView.usersButton2Listener(new UsersButton2Listener());
+		this.mView.mainMenuButton3Listener(new MainMenuButton3Listener());
 	}
 	
 	
@@ -104,7 +107,7 @@ public class MainController {
 		public void actionPerformed(ActionEvent e) {
 			try
 			{
-				mView.displayMessage("TODO");
+				mView.displayReferenceBookMessage();
 			}
 			catch(Exception ex)
 			{
@@ -118,7 +121,7 @@ public class MainController {
 		public void actionPerformed(ActionEvent e) {
 			try
 			{
-				mView.displayMessage("TODO");
+				mView.displayMagazineMessage();
 			}
 			catch(Exception ex)
 			{
@@ -161,7 +164,36 @@ public class MainController {
 		public void actionPerformed(ActionEvent e) {
 			try
 			{
-				mView.displayMessage("TODO");
+				mView.showUserDataPanel(mModel.getUserDataItemsData());
+			}
+			catch(Exception ex)
+			{
+				System.out.println(ex);
+				mView.displayErrorMessage("Error:\n" + ex);
+			}
+		}
+	}
+
+
+	class MainMenuButton3Listener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			try
+			{
+				mView.showMainMenuPanelFromUserData();
+			}
+			catch(Exception ex)
+			{
+				System.out.println(ex);
+				mView.displayErrorMessage("Error:\n" + ex);
+			}
+		}
+	}
+	
+	class UsersButton2Listener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			try
+			{
+				mView.showUsersPanelFromUserData(mModel.getUsersItemsData());
 			}
 			catch(Exception ex)
 			{
