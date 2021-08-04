@@ -67,6 +67,18 @@ public class UserCheckOut {
 		++checkedOutTotal;
 	}
 
+	public void checkOutBook(Book book, Date date) {
+		if(bookRequests.contains(book))
+		{
+			bookRequests.remove(book);
+		}
+		
+		CheckedOutBook cBook = new CheckedOutBook(book, date);
+		
+		checkedOutBooks.add(cBook);
+		++checkedOutTotal;
+	}
+
 	public void checkOutAudioVideo(AudioVideo av) {
 		if(audioVideoRequests.contains(av))
 		{
@@ -74,6 +86,18 @@ public class UserCheckOut {
 		}
 		
 		CheckedOutAV cAV = new CheckedOutAV(av);
+		
+		checkedOutAudioVideo.add(cAV);
+		++checkedOutTotal;
+	}
+
+	public void checkOutAudioVideo(AudioVideo av, Date date) {
+		if(audioVideoRequests.contains(av))
+		{
+			audioVideoRequests.remove(av);
+		}
+		
+		CheckedOutAV cAV = new CheckedOutAV(av, date);
 		
 		checkedOutAudioVideo.add(cAV);
 		++checkedOutTotal;
@@ -140,6 +164,12 @@ class CheckedOutBook {
 		returnDate = setReturnDate(book.getCheckoutLength());
 	}
 	
+	CheckedOutBook(Book book, Date date) {
+		checkedOutBook = book;
+		checkedOutDate = date;
+		returnDate = setReturnDate(book.getCheckoutLength());
+	}
+	
 	Book getBook() {
 		return checkedOutBook;
 	}
@@ -149,7 +179,7 @@ class CheckedOutBook {
 	}
 	
 	String getCheckedOutDateString() {
-		SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+		SimpleDateFormat df = new SimpleDateFormat("MM-dd-yyyy");
 		String stringDate = df.format(checkedOutDate);
 		return stringDate;
 	}
@@ -159,7 +189,7 @@ class CheckedOutBook {
 	}
 	
 	String getReturnDateString() {
-		SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+		SimpleDateFormat df = new SimpleDateFormat("MM-dd-yyyy");
 		String stringDate = df.format(returnDate);
 		return stringDate;
 	}
@@ -190,6 +220,12 @@ class CheckedOutAV {
 		returnDate = setReturnDate(av.getCheckoutLength());
 	}
 	
+	CheckedOutAV(AudioVideo av, Date date) {
+		checkedOutAV = av;
+		checkedOutDate = date;
+		returnDate = setReturnDate(av.getCheckoutLength());
+	}
+	
 	AudioVideo getAudioVideo() {
 		return checkedOutAV;
 	}
@@ -199,7 +235,7 @@ class CheckedOutAV {
 	}
 	
 	String getCheckedOutDateString() {
-		SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+		SimpleDateFormat df = new SimpleDateFormat("MM-dd-yyyy");
 		String stringDate = df.format(checkedOutDate);
 		return stringDate;
 	}
@@ -209,7 +245,7 @@ class CheckedOutAV {
 	}
 	
 	String getReturnDateString() {
-		SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+		SimpleDateFormat df = new SimpleDateFormat("MM-dd-yyyy");
 		String stringDate = df.format(returnDate);
 		return stringDate;
 	}
