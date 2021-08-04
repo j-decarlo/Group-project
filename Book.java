@@ -10,6 +10,7 @@ public class Book extends Item {
 	
 	// Constructor //////////////////////////////////////////////////
 	public Book(String _title, Boolean _isBestSeller, double _itemValue) {
+		itemValue = _itemValue;
 		this.setTitle(_title);
 		this.setCanCheckout(true);
 		this.setIsCheckedOut(false);
@@ -28,6 +29,10 @@ public class Book extends Item {
 
 	public double getItemValue() {
 		return itemValue;
+	}
+
+	public String getItemValueString() {
+		return "$" + String.format("%.2f", itemValue);
 	}
 
 	

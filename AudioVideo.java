@@ -9,6 +9,7 @@ public class AudioVideo extends Item {
 	
 	// Constructor //////////////////////////////////////////////////
 	public AudioVideo(String _title, double _itemValue) {
+		itemValue = _itemValue;
 		this.setTitle(_title);
 		this.setCanCheckout(true);
 		this.setIsCheckedOut(false);
@@ -23,6 +24,10 @@ public class AudioVideo extends Item {
 
 	public double getItemValue() {
 		return itemValue;
+	}
+
+	public String getItemValueString() {
+		return "$" + String.format("%.2f", itemValue);
 	}
 	
 	

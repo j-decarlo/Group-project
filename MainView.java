@@ -17,23 +17,25 @@ public class MainView extends JFrame {
 	// Properties //////////////////////////////////////////////////
 	private JPanel mainPanel = new JPanel();
 	private JButton libraryButton = new JButton("View Library Items");
+	private JButton usersButton = new JButton("View Users");
 
 	private JPanel libraryPanel = new JPanel();
 	private JButton mainMenuButton = new JButton("Main Menu");
-	private JButton libraryButton3 = new JButton("Check Out");
-	private JButton libraryButton4 = new JButton("Check Out Audio/Video Materials");
-	private JButton libraryButton5 = new JButton("Request a Book");
-	private JButton libraryButton6 = new JButton("Renew a Book");	
-	private JButton libraryButton7 = new JButton("Reference Books");
-	private JButton libraryButton8 = new JButton("Magazines");
-	
+	private JButton checkOutButton = new JButton("Check Out");
+	private JButton requestButton = new JButton("Request");
+	private JButton renewButton = new JButton("Renew");	
+	private JButton refBooksButton = new JButton("Reference Books");
+	private JButton magsButton = new JButton("Magazines");
 	
 	private JTable libraryTable = new JTable();
 	private JScrollPane libraryTableScrollPane = new JScrollPane();
 	
-	//private JPanel mainPanel2 = new JPanel();
-	private JButton libraryButton2 = new JButton("View Users");
-
+	private JPanel usersPanel = new JPanel();
+	private JButton mainMenuButton2 = new JButton("Main Menu");
+	private JButton userDataButton = new JButton("View User Data");
+	
+	private JTable usersTable = new JTable();
+	private JScrollPane usersTableScrollPane = new JScrollPane();
 
 
 	// Constructor //////////////////////////////////////////////////
@@ -55,34 +57,62 @@ public class MainView extends JFrame {
 		this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
 		
 		mainPanel.add(libraryButton);
+		mainPanel.add(usersButton);
 		
 		libraryPanel.add(mainMenuButton);
+		libraryPanel.add(checkOutButton);
+		libraryPanel.add(requestButton);
+		libraryPanel.add(renewButton);
+		libraryPanel.add(refBooksButton);
+		libraryPanel.add(magsButton);
 		
-		mainPanel.add(libraryButton2);
+		usersPanel.add(mainMenuButton2);
+		usersPanel.add(userDataButton);
 
-		libraryPanel.add(libraryButton3);
-
-		libraryPanel.add(libraryButton4);
-
-		libraryPanel.add(libraryButton5);
-
-		libraryPanel.add(libraryButton6);
-
-		libraryPanel.add(libraryButton7);
-
-		libraryPanel.add(libraryButton8);
-	//	libraryButton2.add(libraryButton);
 		this.add(mainPanel);
 	}
 	
 	
 	// Action listeners
-	void libraryButtonListener(ActionListener listenForLibraryButton) {
-		libraryButton.addActionListener(listenForLibraryButton);
+	void libraryButtonListener(ActionListener listener) {
+		libraryButton.addActionListener(listener);
 	}
 	
-	void mainMenuButtonListener(ActionListener listenForMainMenuButton) {
-		mainMenuButton.addActionListener(listenForMainMenuButton);
+	void mainMenuButtonListener(ActionListener listener) {
+		mainMenuButton.addActionListener(listener);
+	}
+	
+	void checkOutButtonListener(ActionListener listener) {
+		checkOutButton.addActionListener(listener);
+	}
+	
+	void requestButtonListener(ActionListener listener) {
+		requestButton.addActionListener(listener);
+	}
+	
+	void renewButtonListener(ActionListener listener) {
+		renewButton.addActionListener(listener);
+	}
+	
+	void refBooksButtonListener(ActionListener listener) {
+		refBooksButton.addActionListener(listener);
+	}
+	
+	void magsButtonListener(ActionListener listener) {
+		magsButton.addActionListener(listener);
+	}
+	
+	
+	void usersButtonListener(ActionListener listener) {
+		usersButton.addActionListener(listener);
+	}
+	
+	void mainMenuButton2Listener(ActionListener listener) {
+		mainMenuButton2.addActionListener(listener);
+	}
+	
+	void userDataButtonListener(ActionListener listener) {
+		userDataButton.addActionListener(listener);
 	}
 	
 	
@@ -115,8 +145,43 @@ public class MainView extends JFrame {
 		this.repaint();
 	}
 	
-	void showMainMenuPanel() {
+	void showUsersPanel(Object[][] tableData) {
+		try
+		{
+			usersPanel.remove(usersTableScrollPane);
+			usersPanel.remove(usersTable);
+			
+			Object[] columnNames = {"Name", "Address", "Phone Number", "Library Number", "Age"};
+			usersTable = new JTable(tableData, columnNames);
+			
+			usersTableScrollPane = new JScrollPane(usersTable);
+			usersTable.setFillsViewportHeight(true);
+			usersPanel.add(usersTableScrollPane);
+			usersPanel.revalidate();
+			usersPanel.repaint();
+		}
+		catch(Exception ex)
+		{
+			System.out.println(ex);
+			displayErrorMessage("Error:\n" + ex);
+		}
+		
+		
+		this.remove(mainPanel);
+		this.add(usersPanel);
+		this.revalidate();
+		this.repaint();
+	}
+	
+	void showMainMenuPanelFromLibrary() {
 		this.remove(libraryPanel);
+		this.add(mainPanel);
+		this.revalidate();
+		this.repaint();
+	}
+	
+	void showMainMenuPanelFromUsers() {
+		this.remove(usersPanel);
 		this.add(mainPanel);
 		this.revalidate();
 		this.repaint();
