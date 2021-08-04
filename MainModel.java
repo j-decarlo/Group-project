@@ -294,6 +294,27 @@ public class MainModel {
 		
 		if(id > 0 && id < 11)	// Book
 		{
+			Boolean checkedOutByUser = false;
+			List<UserCheckOut> usersCheckOut = library.getUsersCheckOut();
+			for(UserCheckOut uco : usersCheckOut)
+			{
+				if(uco.getUser() == library.getUserFromLibraryNumber(libraryNumber))
+				{
+					List<CheckedOutBook> checkedOutBooks = uco.getCheckedOutBooks();
+					for(CheckedOutBook cBook : checkedOutBooks)
+					{
+						if(cBook.getBook() == library.getBookFromID(id))
+						{
+							checkedOutByUser = true;
+						}
+					}
+				}
+			}
+			if(!checkedOutByUser)
+			{
+				return response = "Book was not checked out by user";
+			}
+			
 			if(library.isBookRequested(library.getBookFromID(id)))
 			{
 				return response = "Book has been requested.\nYou must return this item.";
@@ -310,6 +331,27 @@ public class MainModel {
 		}
 		else if(id > 10 && id < 21)	// Audio/Video
 		{
+			Boolean checkedOutByUser = false;
+			List<UserCheckOut> usersCheckOut = library.getUsersCheckOut();
+			for(UserCheckOut uco : usersCheckOut)
+			{
+				if(uco.getUser() == library.getUserFromLibraryNumber(libraryNumber))
+				{
+					List<CheckedOutAV> checkedOutAudioVideo = uco.getCheckedOutAudioVideo();
+					for(CheckedOutAV cAV : checkedOutAudioVideo)
+					{
+						if(cAV.getAudioVideo() == library.getAVFromID(id))
+						{
+							checkedOutByUser = true;
+						}
+					}
+				}
+			}
+			if(!checkedOutByUser)
+			{
+				return response = "Audio/video item was not checked out by user";
+			}
+			
 			if(library.isAudioVideoRequested(library.getAVFromID(id)))
 			{
 				return response = "Audio/video item has been requested.\nYou must return this item.";
@@ -352,12 +394,14 @@ public class MainModel {
 		
 		if(id > 0 && id < 11)	// Book
 		{
-			// TODO
+			// TODO // if not checked out // fines
+			library.returnBook(library.getBookFromID(id), library.getUserFromLibraryNumber(libraryNumber));
 			response = "Returned book ID: " + id + " (" + library.getBookFromID(id).getTitle() + ") " + "by library number: " + libraryNumber + " (" + library.getUserFromLibraryNumber(libraryNumber).getName() + ")";
 		}
 		else if(id > 10 && id < 21)	// Audio/Video
 		{
-			// TODO
+			// TODO // if not checked out // fines
+			library.returnAudioVideo(library.getAVFromID(id), library.getUserFromLibraryNumber(libraryNumber));
 			response = "Returned audio/video item ID: " + id + " (" + library.getAVFromID(id).getTitle() + ") " + "by library number: " + libraryNumber + " (" + library.getUserFromLibraryNumber(libraryNumber).getName() + ")";
 		}
 		else if(id > 20 && id < 26)	// Reference Book
@@ -377,7 +421,7 @@ public class MainModel {
 	}
 	
 	public String saveChangesExport() {
-		String response = "TODO";
+		String response = "Disabled for demo purposes";
 
 		// TODO
 		
