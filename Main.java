@@ -20,8 +20,9 @@ public class Main {
 	    Library library = new Main().initializeLibrary();
 	    
 	    // Setup the MVC application
-	    MainView mView = new MainView(library);
+	    MainView mView = new MainView();
 	    MainModel mModel = new MainModel();
+	    mModel.setLibrary(library);
 	    MainController mController = new MainController(mView, mModel);
 	    mView.setVisible(true);
 

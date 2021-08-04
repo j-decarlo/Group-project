@@ -214,7 +214,7 @@ public class Library {
 	// Library functions /////////////////////////
 	
 	// Check out items
-	public boolean checkOutBook(Book book, User user) {
+	public Boolean checkOutBook(Book book, User user) {
 		if(bookRequests.contains(book))
 		{
 			bookRequests.remove(book);
@@ -239,7 +239,6 @@ public class Library {
 				else
 				{
 					uco.checkOutBook(book);
-					return true;
 				}
 			}
 		}
@@ -248,11 +247,12 @@ public class Library {
 			UserCheckOut newUserCheckOut = new UserCheckOut(user);
 			newUserCheckOut.checkOutBook(book);
 			usersCheckOut.add(newUserCheckOut);
-			return true;
 		}
+		
+		return true;
 	}
 	
-	public boolean checkOutBook(Book book, User user, Date date) {
+	public Boolean checkOutBook(Book book, User user, Date date) {
 		if(bookRequests.contains(book))
 		{
 			bookRequests.remove(book);
@@ -277,7 +277,6 @@ public class Library {
 				else
 				{
 					uco.checkOutBook(book, date);
-					return true;
 				}
 			}
 		}
@@ -286,11 +285,12 @@ public class Library {
 			UserCheckOut newUserCheckOut = new UserCheckOut(user);
 			newUserCheckOut.checkOutBook(book, date);
 			usersCheckOut.add(newUserCheckOut);
-			return true;
 		}
+		
+		return true;
 	}
 
-	public boolean checkOutAudioVideo(AudioVideo av, User user) {
+	public Boolean checkOutAudioVideo(AudioVideo av, User user) {
 		if(audioVideoRequests.contains(av))
 		{
 			audioVideoRequests.remove(av);
@@ -315,7 +315,6 @@ public class Library {
 				else
 				{
 					uco.checkOutAudioVideo(av);
-					return true
 				}
 			}
 		}
@@ -324,11 +323,12 @@ public class Library {
 			UserCheckOut newUserCheckOut = new UserCheckOut(user);
 			newUserCheckOut.checkOutAudioVideo(av);
 			usersCheckOut.add(newUserCheckOut);
-			return true;
 		}
+		
+		return true;
 	}
 
-	public void checkOutAudioVideo(AudioVideo av, User user, Date date) {
+	public Boolean checkOutAudioVideo(AudioVideo av, User user, Date date) {
 		if(audioVideoRequests.contains(av))
 		{
 			audioVideoRequests.remove(av);
@@ -353,7 +353,6 @@ public class Library {
 				else
 				{
 					uco.checkOutAudioVideo(av, date);
-					return true
 				}
 			}
 		}
@@ -362,8 +361,9 @@ public class Library {
 			UserCheckOut newUserCheckOut = new UserCheckOut(user);
 			newUserCheckOut.checkOutAudioVideo(av, date);
 			usersCheckOut.add(newUserCheckOut);
-			return true;
 		}
+		
+		return true;
 	}
 	
 	// Return items

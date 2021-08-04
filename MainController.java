@@ -25,9 +25,9 @@ public class MainController {
 		public void actionPerformed(ActionEvent e) {
 			try
 			{
-				mView.showLibraryPanel();
+				mView.showLibraryPanel(mModel.getLibraryItemsData());
 			}
-			catch(NumberFormatException ex)
+			catch(Exception ex)
 			{
 				System.out.println(ex);
 				mView.displayErrorMessage("Error:\n" + ex);
@@ -41,7 +41,7 @@ public class MainController {
 			{
 				mView.showMainMenuPanel();
 			}
-			catch(NumberFormatException ex)
+			catch(Exception ex)
 			{
 				System.out.println(ex);
 				mView.displayErrorMessage("Error:\n" + ex);

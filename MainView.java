@@ -9,23 +9,23 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 
 public class MainView extends JFrame {
 	
 	// Properties //////////////////////////////////////////////////
-	private Library library;
-	
 	private JPanel mainPanel = new JPanel();
 	private JButton libraryButton = new JButton("View Library Items");
 
 	private JPanel libraryPanel = new JPanel();
 	private JButton mainMenuButton = new JButton("Main Menu");
+	private JTable libraryTable = new JTable();
+	private JScrollPane libraryTableScrollPane = new JScrollPane();
 	
 	
 	// Constructor //////////////////////////////////////////////////
-	MainView(Library _library) {
-		library = _library;
-		
+	MainView() {
 		// Set up the view and add the components
 		
 		this.setTitle("Library System");
@@ -51,24 +51,45 @@ public class MainView extends JFrame {
 	
 	
 	// Action listeners
-	void libraryButtonListener(ActionListener listenForLibraryButton){
+	void libraryButtonListener(ActionListener listenForLibraryButton) {
 		libraryButton.addActionListener(listenForLibraryButton);
 	}
 	
-	void mainMenuButtonListener(ActionListener listenForMainMenuButton){
+	void mainMenuButtonListener(ActionListener listenForMainMenuButton) {
 		mainMenuButton.addActionListener(listenForMainMenuButton);
 	}
 	
 	
 	// Change the view
-	void showLibraryPanel(){
+	void showLibraryPanel(Object[][] tableData) {
+		try
+		{
+			libraryPanel.remove(libraryTableScrollPane);
+			libraryPanel.remove(libraryTable);
+			
+			Object[] columnNames = {"Type", "ID", "Title", "Best Seller", "Value"};
+			libraryTable = new JTable(tableData, columnNames);
+			
+			libraryTableScrollPane = new JScrollPane(libraryTable);
+			libraryTable.setFillsViewportHeight(true);
+			libraryPanel.add(libraryTableScrollPane);
+			libraryPanel.revalidate();
+			libraryPanel.repaint();
+		}
+		catch(Exception ex)
+		{
+			System.out.println(ex);
+			displayErrorMessage("Error:\n" + ex);
+		}
+		
+		
 		this.remove(mainPanel);
 		this.add(libraryPanel);
 		this.revalidate();
 		this.repaint();
 	}
 	
-	void showMainMenuPanel(){
+	void showMainMenuPanel() {
 		this.remove(libraryPanel);
 		this.add(mainPanel);
 		this.revalidate();
@@ -77,12 +98,12 @@ public class MainView extends JFrame {
 	
 	
 	// Open a pop-up that contains the message passed
-	void displayMessage(String message){
+	void displayMessage(String message) {
 		JOptionPane.showMessageDialog(this, message);
 	}
 	
 	// Open a pop-up that contains the error message passed
-	void displayErrorMessage(String errorMessage){
+	void displayErrorMessage(String errorMessage) {
 		JOptionPane.showMessageDialog(this, errorMessage);
 	}
 }
