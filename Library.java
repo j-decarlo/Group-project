@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Scanner;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.ZonedDateTime;
 import java.time.temporal.ChronoUnit;
 
 public class Library {
@@ -224,7 +226,7 @@ public class Library {
 		}
 	}
 
-	public String printFineString(User user) {
+	public float printFineString(User user) {
 		String fine = "$";
 		double fineDouble = 0.00;
 		
@@ -236,14 +238,66 @@ public class Library {
 				Calendar cal = Calendar.getInstance();
 				cal.add(Calendar.DATE, cBook.getBook().getCheckoutLength());
 				Date overdueDate = cal.getTime();
+				Date checkedOutDate = cal.getTime();
 				
 				if(overdueDate.before(new Date()))
 				{
+					
 					LocalDate overdueLocalDate = LocalDate.parse(new SimpleDateFormat("MM-dd-yyyy").format(overdueDate));
-					LocalDate checkedOutLocalDate = LocalDate.parse(new SimpleDateFormat("MM-dd-yyyy").format(new Date()));
+					LocalDate checkedOutLocalDate = LocalDate.parse(new SimpleDateFormat("MM-dd-yyyy").format(checkedOutDate));
 					int daysOverdue = (int) ChronoUnit.DAYS.between(overdueLocalDate, checkedOutLocalDate);
-					fineDouble += daysOverdue * 0.10;
+					int item = (int) Book.getItemValue(); 
+					fineDouble += 0.10 * item; 
+					System.out.println(overdueLocalDate);
+					System.out.println(checkedOutLocalDate);
+					System.out.println(daysOverdue);
+					
+					System.out.println("Your book is not due. You owe: $" + fineDouble);
 				}
+				/*
+				else
+				{
+					   int N;
+				        float f;
+				        Scanner sc=new Scanner(System.in);
+				        System.out.println("Enter the no. of days the book is returned late:");
+				        N=sc.nextInt();
+				        if (N<=5)
+				            f=0.40f*N;
+				        else if (N<=10)
+				            f=0.40f*5+(N-5)*0.65f;
+				        else
+				            f=0.40f*5+0.65f*5+(N-10)*0.80f;
+				        System.out.println("Fine= $"+f);
+
+					//System.out.println("Your book is over due. You owe:" + fine);
+				}
+				
+				else if(overdueDate.after(new Date()))
+				{
+
+					System.out.println("Your book is over due. You owe:" + fineDouble);
+					
+				}
+				else {
+					System.out.println("You owe nothing");
+				}
+				
+				 int N;
+			        float f;
+			        Scanner sc=new Scanner(System.in);
+			        System.out.println("Enter the no. of days the book is returned late:");
+			        N=sc.nextInt();
+			        if (N<=5)
+			            f=0.10f*N;
+			        else if (N<=10)
+			            f=0.10f*5+(N-5)*0.10f;
+			        else
+			            f=0.10f*5+0.10f*5+(N-10)*0.10f;
+			        System.out.println("Fine= $"+f);
+			        //return f;
+			     */
+			
 			}
 			
 			// Get fines from audio/video items
@@ -262,7 +316,20 @@ public class Library {
 				}
 			}
 		}
-		return fine += String.format("%.2f", fineDouble);
+		 int N;
+	        float f;
+	        Scanner sc=new Scanner(System.in);
+	        System.out.println("Enter the no. of days the book is returned late:");
+	        N=sc.nextInt();
+	        if (N<=5)
+	            f=0.10f*N;
+	        else if (N<=10)
+	            f=0.10f*5+(N-5)*0.10f;
+	        else
+	            f=0.10f*5+0.10f*5+(N-10)*0.10f;
+	        System.out.println("Fine= $"+f);
+	        return f;
+		//return f + String.format("%.2f", fineDouble);
 	}
 
 	// Add item functions
