@@ -191,15 +191,16 @@ public class MainModel {
 		int id = Integer.valueOf((String) objId);
 		int libraryNumber = Integer.valueOf((String) objLibraryNumber);
 		
+		if(libraryNumber > 6)
+		{
+			return response = "Library number does not exist";
+		}
+		
 		if(id > 0 && id < 11)	// Book
 		{
-			List<Book> checkedOutBooks = library.getCheckedOutBooks();
-			for(Book book : checkedOutBooks)
+			if(!library.isBookAvailable(library.getBookFromID(id)))
 			{
-				if(book.getID() == id)
-				{
-					return response = "Book is already checked out.\nTry requesting the item instead.";
-				}
+				return response = "Book is already checked out.\nTry requesting the item instead.";
 			}
 			
 			Boolean valid = library.checkOutBook(library.getBookFromID(id), library.getUserFromLibraryNumber(libraryNumber));
@@ -214,13 +215,9 @@ public class MainModel {
 		}
 		else if(id > 10 && id < 21)	// Audio/Video
 		{
-			List<AudioVideo> checkedOutAudioVideo = library.getCheckedOutAudioVideo();
-			for(AudioVideo av : checkedOutAudioVideo)
+			if(!library.isAudioVideoAvailable(library.getAVFromID(id)))
 			{
-				if(av.getID() == id)
-				{
-					return response = "Audio/video item is already checked out.\nTry requesting the item instead.";
-				}
+				return response = "Audio/video item is already checked out.\nTry requesting the item instead.";
 			}
 			
 			Boolean valid = library.checkOutAudioVideo(library.getAVFromID(id), library.getUserFromLibraryNumber(libraryNumber));
@@ -241,6 +238,10 @@ public class MainModel {
 		{
 			response = "Magazines cannot be checked out";
 		}
+		else
+		{
+			response = "Item ID does not exist";
+		}
 		
 		return response;
 	}
@@ -250,15 +251,20 @@ public class MainModel {
 		int id = Integer.valueOf((String) objId);
 		int libraryNumber = Integer.valueOf((String) objLibraryNumber);
 		
+		if(libraryNumber > 6)
+		{
+			return response = "Library number does not exist";
+		}
+		
 		if(id > 0 && id < 11)	// Book
 		{
-			// TODO
-			response = "Requested book ID: " + id + " by library number: " + libraryNumber;
+			library.requestBook(library.getBookFromID(id), library.getUserFromLibraryNumber(libraryNumber));
+			response = "Requested book ID: " + id + " (" + library.getBookFromID(id).getTitle() + ") " + "by library number: " + libraryNumber + " (" + library.getUserFromLibraryNumber(libraryNumber).getName() + ")";
 		}
 		else if(id > 10 && id < 21)	// Audio/Video
 		{
-			// TODO
-			response = "Requested audio/video item ID: " + id + " by library number: " + libraryNumber;
+			library.requestAudioVideo(library.getAVFromID(id), library.getUserFromLibraryNumber(libraryNumber));
+			response = "Requested audio/video item ID: " + id + " (" + library.getAVFromID(id).getTitle() + ") " + "by library number: " + libraryNumber + " (" + library.getUserFromLibraryNumber(libraryNumber).getName() + ")";
 		}
 		else if(id > 20 && id < 26)	// Reference Book
 		{
@@ -268,6 +274,10 @@ public class MainModel {
 		{
 			response = "Magazines cannot be checked out";
 		}
+		else
+		{
+			response = "Item ID does not exist";
+		}
 		
 		return response;
 	}
@@ -276,6 +286,11 @@ public class MainModel {
 		String response = "";
 		int id = Integer.valueOf((String) objId);
 		int libraryNumber = Integer.valueOf((String) objLibraryNumber);
+		
+		if(libraryNumber > 6)
+		{
+			return response = "Library number does not exist";
+		}
 		
 		if(id > 0 && id < 11)	// Book
 		{
@@ -295,6 +310,10 @@ public class MainModel {
 		{
 			response = "Magazines cannot be checked out";
 		}
+		else
+		{
+			response = "Item ID does not exist";
+		}
 		
 		return response;
 	}
@@ -303,6 +322,11 @@ public class MainModel {
 		String response = "";
 		int id = Integer.valueOf((String) objId);
 		int libraryNumber = Integer.valueOf((String) objLibraryNumber);
+		
+		if(libraryNumber > 6)
+		{
+			return response = "Library number does not exist";
+		}
 		
 		if(id > 0 && id < 11)	// Book
 		{
@@ -321,6 +345,10 @@ public class MainModel {
 		else if(id > 25 && id < 31)	// Magazine
 		{
 			response = "Magazines cannot be checked out";
+		}
+		else
+		{
+			response = "Item ID does not exist";
 		}
 		
 		return response;
